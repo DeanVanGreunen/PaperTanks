@@ -19,7 +19,6 @@ export default class MainMenu extends IState {
     }
 
     public init(){
-
         // create buttons
         this.startButton = new Button();
         this.startButton.text = "Start Game";
