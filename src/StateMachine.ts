@@ -33,10 +33,10 @@ export default class StateMachine {
         // bind to keyboard
 
         // load splash, pop and add game state
-        this.states = [];
+        StateMachine.states = [];
         let splash = new Splash();
         await splash.init();
-        this.states.push(splash);
+        StateMachine.states.push(splash);
 
         // start game loop
         this.interval = setInterval(this.loop, 33);
@@ -46,8 +46,8 @@ export default class StateMachine {
         if(StateMachine.mustQuit){
             clearInterval(this.interval);
         }
-        for(let i=0;i<thStateMachineis.states.length; i++){
-            StateMachine.states[i].update(0.33, this);
+        for(let i=0;i<StateMachine.states.length; i++){
+            StateMachine.states[i].update(0.33);
         }
 
 
@@ -61,5 +61,8 @@ export default class StateMachine {
         for(let i=0;i<StateMachine.states.length; i++){
             StateMachine.states[i].render(StateMachine.canvas);
         }
+
+        // reset mouse down
+        StateMachine.mouse_down = false;
     }
 }

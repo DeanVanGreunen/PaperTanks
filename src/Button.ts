@@ -33,10 +33,13 @@ export default class Button {
         // align button by center pivot
         let m_x = StateMachine.mouse_x;
         let m_y = StateMachine.mouse_y;
-        // todo: check if hover
+        // check if hover
         this.isHover = (m_x >= this.x) && (m_y >= this.y) && (m_x <= this.x + this.w) && (m_y <= this.y + this.h);
+        // if hover and mouse down
         if(this.isHover && StateMachine.mouse_down){
+            // reset mouse down
             StateMachine.mouse_down = false;
+            // invoke onclick function
             this.onclick();
         }
     }

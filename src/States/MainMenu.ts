@@ -1,6 +1,7 @@
 import Button from "../Button";
 import IState from "../IState";
 import StateMachine from "../StateMachine";
+import ThankYou from "./ThankYou";
 
 export default class MainMenu extends IState {
     game_name_logo:any;
@@ -32,8 +33,11 @@ export default class MainMenu extends IState {
         this.startButton.size = "32px";
         this.startButton.w = 150;
         this.startButton.h = 48;
-        this.startButton.onclick = () => {            
+        this.startButton.onclick = async () => {            
             StateMachine.states.pop();
+            let state = new ThankYou();
+            await state.init();
+            StateMachine.states.push(state);
         };
 
 
