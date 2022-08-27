@@ -28,7 +28,7 @@ export default class MainMenu extends IState {
         this.startButton.background = "rgb(0,0,0,0)"; // transparent
         this.startButton.hover_background = "rgb(0,0,0,0)"; // transparent
         this.startButton.border = "#363636";
-        this.startButton.hover_border = "rgb(0,0,0,0)";
+        this.startButton.hover_border = "#cc0707";
         this.startButton.font = "PencilRegular";
         this.startButton.size = "32px";
         this.startButton.w = 150;
