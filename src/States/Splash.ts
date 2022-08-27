@@ -88,9 +88,5 @@ export default class Splash extends IState {
             ctx.lineTo(24, canvas.height);
             ctx.stroke();
         }
-
-        
-        ctx.font = `24px PencilRegular`;
-        ctx.fillText("Start Game" ,0,0);
     }
 }

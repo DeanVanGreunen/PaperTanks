@@ -30,9 +30,9 @@ export default class MainMenu extends IState {
         this.startButton.border = "rgb(0,0,0,0)";
         this.startButton.hover_border = "rgb(0,0,0,0)";
         this.startButton.font = "PencilRegular";
-        this.startButton.size = "24px";
-        this.startButton.w = 128;
-        this.startButton.h = 32;
+        this.startButton.size = "32px";
+        this.startButton.w = 100;
+        this.startButton.h = 48;
         this.startButton.x = 0;
         this.startButton.y = 0;
 
@@ -101,6 +101,10 @@ export default class MainMenu extends IState {
 
         ctx.drawImage(this.game_name_logo, 0, 0, this.game_name_logo.width, this.game_name_logo.height, this.game_name_logo_x, this.game_name_logo_y, this.game_name_logo.width, this.game_name_logo.height);        
         
+        if(this.showMenu){ // if enabled show menu buttons           
+            this.startButton.render(canvas);
+        }
+
         // used for fading
         ctx.fillStyle = `rgba(229,229,229, ${this.counter / 225})`;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -115,7 +119,6 @@ export default class MainMenu extends IState {
                 ctx.lineTo(canvas.width, i * 12);
                 ctx.stroke();
             }
-
             
             ctx.beginPath();
             ctx.lineWidth = 0.25;
@@ -126,8 +129,6 @@ export default class MainMenu extends IState {
         }
 
         // render buttons here
-        if(this.showMenu){ // if enabled show menu buttons           
-            this.startButton.render(canvas);
-        }
+        
     }
 }

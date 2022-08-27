@@ -14,8 +14,12 @@ export default class Button {
     y:number;
     w:number;
     h:number;
+    n_x:number;
+    n_y:number;
 
     onclick:any;
+
+    isHover:boolean = false;
     
     constructor(){        
         this.init = this.init.bind(this);
@@ -28,12 +32,22 @@ export default class Button {
     }
 
     public update(delta:number, stateMachine: StateMachine){
-        console.log('update button');
+        // align button by center pivot
+        this.n_x = (stateMachine.canvas.width / 2) + this.x - (this.w / 2);
+        this.n_y = (stateMachine.canvas.height / 2) + this.y - (this.h / 2);
+        let m_x = StateMachine.mouse_x;
+        let m_y = StateMachine.mouse_y;
+        // check if hover
+        this.isHover = (m_x >= this.n_x) && (m_y >= this.n_y) && (m_x <= (this.n_x + this.w)) && (m_y <= (this.n_y + this.h));
     }
 
     public render(canvas:any){     
         let ctx = canvas.getContext("2d");
-        ctx.font = `${this.size} ${this.font}`;
-        ctx.fillText(this.text,0,0);
+        ctx.beginPath();
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.font = `normal ${this.size} ${this.font}`;
+        ctx.fillStyle = !this.isHover ? this.color : this.hover_color;
+        ctx.fillText(this.text,this.n_x, this.n_y);        
     }
 }

@@ -7,8 +7,9 @@ export default class StateMachine {
     canvas:any | null = null;
     states:IState[];
 
-    mouse:any;
-    keyboard:any;
+    static mouse_x:any;
+    static mouse_y:any;
+    static keyboard:any;
 
 
     constructor(canvas:any){
@@ -19,6 +20,14 @@ export default class StateMachine {
     }
 
     async init(){
+        // bind to mouse   
+        document.addEventListener('mousemove', (e)=>{
+            let rect = this.canvas.getBoundingClientRect();
+            StateMachine.mouse_x = e.pageX - rect.left;
+            StateMachine.mouse_y = e.pageY - rect.top;
+        });     
+        // bind to keyboard
+
         // load splash, pop and add game state
         this.states = [];
         let splash = new Splash();
