@@ -66,6 +66,14 @@ export default class MainMenu extends IState {
             ctx.stroke();
         }
 
+        
+        ctx.beginPath();
+        ctx.lineWidth = 0.25;
+        ctx.strokeStyle = `rgba(225, 0, 0, 1)`;
+        ctx.moveTo(24, 0);
+        ctx.lineTo(24, canvas.height);
+        ctx.stroke();
+
         ctx.drawImage(this.game_name_logo, 0, 0, this.game_name_logo.width, this.game_name_logo.height, this.game_name_logo_x, this.game_name_logo_y, this.game_name_logo.width, this.game_name_logo.height);        
         if(this.showMenu){ // if enabled show menu buttons
 
@@ -84,6 +92,14 @@ export default class MainMenu extends IState {
                 ctx.lineTo(canvas.width, i * 12);
                 ctx.stroke();
             }
+
+            
+            ctx.beginPath();
+            ctx.lineWidth = 0.25;
+            ctx.strokeStyle = `rgba(225, 0, 0, ${this.counter / 225})`;
+            ctx.moveTo(24, 0);
+            ctx.lineTo(24, canvas.height);
+            ctx.stroke();
         }
     }
 }
