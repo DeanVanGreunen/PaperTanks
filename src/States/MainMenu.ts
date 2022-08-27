@@ -31,10 +31,8 @@ export default class MainMenu extends IState {
         this.startButton.hover_border = "rgb(0,0,0,0)";
         this.startButton.font = "PencilRegular";
         this.startButton.size = "32px";
-        this.startButton.w = 100;
+        this.startButton.w = 150;
         this.startButton.h = 48;
-        this.startButton.x = 0;
-        this.startButton.y = 0;
 
 
         // load assessts
@@ -71,6 +69,8 @@ export default class MainMenu extends IState {
                 this.counter = 0;
             }    
 
+            this.startButton.x = (stateMachine.canvas.height / 2) - 75;
+            this.startButton.y = (stateMachine.canvas.width / 2) - 24;
             this.startButton.update(delta, stateMachine);
         }
     }

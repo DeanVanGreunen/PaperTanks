@@ -14,8 +14,6 @@ export default class Button {
     y:number;
     w:number;
     h:number;
-    n_x:number;
-    n_y:number;
 
     onclick:any;
 
@@ -33,12 +31,10 @@ export default class Button {
 
     public update(delta:number, stateMachine: StateMachine){
         // align button by center pivot
-        this.n_x = (stateMachine.canvas.width / 2) + this.x - (this.w / 2);
-        this.n_y = (stateMachine.canvas.height / 2) + this.y - (this.h / 2);
         let m_x = StateMachine.mouse_x;
         let m_y = StateMachine.mouse_y;
-        // check if hover
-        this.isHover = ( m_x >= this.x) && (m_y >= this.y) && (m_x <= this.x + this.w) && (m_y <= this.y + this.h);
+        // todo: check if hover
+        this.isHover = (m_x >= this.x) && (m_y >= this.y) && (m_x <= this.x + this.h) && (m_y <= this.y + this.h);
     }
 
     public render(canvas:any){     
@@ -48,6 +44,6 @@ export default class Button {
         ctx.textBaseline = "middle";
         ctx.font = `normal ${this.size} ${this.font}`;
         ctx.fillStyle = !this.isHover ? this.color : this.hover_color;
-        ctx.fillText(this.text,this.n_x, this.n_y);        
+        ctx.fillText(this.text,this.x, this.y);        
     }
 }
