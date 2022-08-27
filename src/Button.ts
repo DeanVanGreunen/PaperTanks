@@ -38,7 +38,7 @@ export default class Button {
         let m_x = StateMachine.mouse_x;
         let m_y = StateMachine.mouse_y;
         // check if hover
-        this.isHover = (m_x >= this.n_x) && (m_y >= this.n_y) && (m_x <= (this.n_x + this.w)) && (m_y <= (this.n_y + this.h));
+        this.isHover = ( m_x >= this.x) && (m_y >= this.y) && (m_x <= this.x + this.w) && (m_y <= this.y + this.h);
     }
 
     public render(canvas:any){     
