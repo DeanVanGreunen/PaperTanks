@@ -17,6 +17,12 @@ export default class Button {
 
     onclick:any;
     
+    constructor(){        
+        this.init = this.init.bind(this);
+        this.update = this.update.bind(this);
+        this.render = this.render.bind(this);
+    }
+
     public init(){
 
     }
@@ -25,24 +31,9 @@ export default class Button {
         console.log('update button');
     }
 
-    public render(canvas:any){
-        let x = this.x + (canvas.width / 2) - (this.w / 2);
-        let y = this.y + (canvas.height / 2) - (this.h / 2);
+    public render(canvas:any){     
         let ctx = canvas.getContext("2d");
-        ctx.beginPath();
-        ctx.lineWidth = 0.5;
-        ctx.strokeStyle = this.border;
-        ctx.moveTo(x, y);
-        ctx.lineTo(x, y + this.h);
-        ctx.lineTo(x + this.w, y + this.h);
-        ctx.lineTo(x + this.w, y);
-        ctx.lineTo(x, y);
-        ctx.stroke();
-
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.font = `${this.size} ${this.font}`;
-        ctx.fillText(this.text, this.x, this.y);
-        console.log('render button text');
+        ctx.font = `${this.size} normal ${this.font}`;
+        ctx.fillText(this.text,0,0);
     }
 }
