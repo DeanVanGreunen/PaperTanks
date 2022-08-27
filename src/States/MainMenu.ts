@@ -8,6 +8,7 @@ export default class MainMenu extends IState {
     counter:number = 255;   
     switch:boolean = false; 
     showMenu:boolean = false;
+    startButton:Button;
     constructor(){
         super();
     }
@@ -55,7 +56,7 @@ export default class MainMenu extends IState {
         ctx.imageSmoothingEnabled = false;
         ctx.drawImage(this.game_name_logo, 0, 0, this.game_name_logo.width, this.game_name_logo.height, this.game_name_logo_x, this.game_name_logo_y, this.game_name_logo.width, this.game_name_logo.height);        
         if(this.showMenu){ // if enabled show menu buttons
-            
+
         }
         // used for fading
         ctx.fillStyle = `rgba(229,229,229, ${this.counter / 225})`;
