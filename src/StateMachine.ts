@@ -29,7 +29,7 @@ export default class StateMachine {
             clearInterval(this.interval);
         }
         for(let i=0;i<this.states.length; i++){
-            this.states[i].update(0.33);
+            this.states[i].update(0.33, this);
         }
 
 

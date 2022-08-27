@@ -1,9 +1,11 @@
+import StateMachine from "./StateMachine";
+
 export default class IState {
     public init(){
 
     }
 
-    public update(delta:number){
+    public update(delta:number, stateMachine: StateMachine){
 
     }
 
