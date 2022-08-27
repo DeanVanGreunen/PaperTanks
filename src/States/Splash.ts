@@ -56,6 +56,14 @@ export default class Splash extends IState {
             ctx.lineTo(canvas.width, i * 12);
             ctx.stroke();
         }
+
+        ctx.beginPath();
+        ctx.lineWidth = 0.25;
+        ctx.strokeStyle = `rgba(225, 0, 0, 1)`;
+        ctx.moveTo(12, 0);
+        ctx.lineTo(12, canvas.height);
+        ctx.stroke();
+
         
         ctx.drawImage(this.logo, 0, 0, this.logo.width, this.logo.height, x, y, this.logo.width, this.logo.height);
 
@@ -72,6 +80,13 @@ export default class Splash extends IState {
                 ctx.lineTo(canvas.width, i * 12);
                 ctx.stroke();
             }
+            
+            ctx.beginPath();
+            ctx.lineWidth = 0.25;
+            ctx.strokeStyle = `rgba(225, 0, 0, ${this.counter / 225})`;
+            ctx.moveTo(12, 0);
+            ctx.lineTo(12, canvas.height);
+            ctx.stroke();
         }
     }
 }
