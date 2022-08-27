@@ -3,7 +3,8 @@ import StateMachine from "../StateMachine";
 
 export default class Splash extends IState {
     logo:any;
-    counter:number = 255;    
+    counter:number = 255;   
+    switch:boolean = false; 
     constructor(){
         super();
     }
@@ -19,10 +20,17 @@ export default class Splash extends IState {
     }
 
     public update(delta:number, stateMachine: StateMachine){
-        this.counter -= delta * 10;
-        if(this.counter <= 0){
-            stateMachine.states.pop();
-            //TODO: add menu state here
+        if(!this.switch){
+            this.counter -= delta * 10;
+            if(this.counter <= 0){
+                this.switch = true;
+            }    
+        } else {
+            this.counter += delta * 10;
+            if(this.counter >= 255){
+                stateMachine.states.pop();
+                //TODO: add menu state here
+            }    
         }
     }
 
