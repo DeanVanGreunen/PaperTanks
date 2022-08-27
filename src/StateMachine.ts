@@ -4,16 +4,17 @@ import Splash from "./States/Splash";
 export default class StateMachine {
     interval:any;
     static mustQuit:boolean = false;
-    canvas:any | null = null;
-    states:IState[];
+    static canvas:any | null = null;
+    static states:IState[];
 
     static mouse_x:any;
     static mouse_y:any;
+    static mouse_down:boolean = false;
     static keyboard:any;
 
 
     constructor(canvas:any){
-        this.canvas = canvas;   
+        StateMachine.canvas = canvas;   
 
         this.init = this.init.bind(this);
         this.loop = this.loop.bind(this);
@@ -22,9 +23,12 @@ export default class StateMachine {
     async init(){
         // bind to mouse   
         document.addEventListener('mousemove', (e)=>{
-            let rect = this.canvas.getBoundingClientRect();
+            let rect = StateMachine.canvas.getBoundingClientRect();
             StateMachine.mouse_x = e.pageX - rect.left;
             StateMachine.mouse_y = e.pageY - rect.top;
+        });  
+        document.addEventListener('mousedown', (e)=>{
+            StateMachine.mouse_down = e.button == 0;
         });     
         // bind to keyboard
 
@@ -42,20 +46,20 @@ export default class StateMachine {
         if(StateMachine.mustQuit){
             clearInterval(this.interval);
         }
-        for(let i=0;i<this.states.length; i++){
-            this.states[i].update(0.33, this);
+        for(let i=0;i<thStateMachineis.states.length; i++){
+            StateMachine.states[i].update(0.33, this);
         }
 
 
         // clear with light grey
-        let ctx = this.canvas.getContext("2d");
+        let ctx = StateMachine.canvas.getContext("2d");
         ctx.fillStyle = "#E5E5E5";
-        ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        ctx.fillRect(0, 0, StateMachine.canvas.width, StateMachine.canvas.height);
         
         
 
-        for(let i=0;i<this.states.length; i++){
-            this.states[i].render(this.canvas);
+        for(let i=0;i<StateMachine.states.length; i++){
+            StateMachine.states[i].render(StateMachine.canvas);
         }
     }
 }

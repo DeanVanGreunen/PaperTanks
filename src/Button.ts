@@ -15,7 +15,7 @@ export default class Button {
     w:number;
     h:number;
 
-    onclick:any;
+    onclick:any = ()=>{/* do noting*/};
 
     isHover:boolean = false;
     
@@ -29,12 +29,16 @@ export default class Button {
 
     }
 
-    public update(delta:number, stateMachine: StateMachine){
+    public update(delta:number){
         // align button by center pivot
         let m_x = StateMachine.mouse_x;
         let m_y = StateMachine.mouse_y;
         // todo: check if hover
         this.isHover = (m_x >= this.x) && (m_y >= this.y) && (m_x <= this.x + this.w) && (m_y <= this.y + this.h);
+        if(this.isHover && StateMachine.mouse_down){
+            StateMachine.mouse_down = false;
+            this.onclick();
+        }
     }
 
     public render(canvas:any){     

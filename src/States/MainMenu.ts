@@ -32,6 +32,9 @@ export default class MainMenu extends IState {
         this.startButton.size = "32px";
         this.startButton.w = 150;
         this.startButton.h = 48;
+        this.startButton.onclick = () => {            
+            StateMachine.states.pop();
+        };
 
 
         // load assessts
@@ -44,7 +47,7 @@ export default class MainMenu extends IState {
         }));
     }
 
-    public update(delta:number, stateMachine: StateMachine){
+    public update(delta:number){
         if(!this.showMenu){
             this.game_name_logo_x = (620 / 2) - ( this.game_name_logo.width / 2);
             this.game_name_logo_y = (480 / 2) - ( this.game_name_logo.height / 2);
@@ -68,9 +71,9 @@ export default class MainMenu extends IState {
                 this.counter = 0;
             }    
 
-            this.startButton.x = (stateMachine.canvas.width / 2) - (this.startButton.w / 2);
-            this.startButton.y = (stateMachine.canvas.height / 2) - (this.startButton.h / 2);
-            this.startButton.update(delta, stateMachine);
+            this.startButton.x = (StateMachine.canvas.width / 2) - (this.startButton.w / 2);
+            this.startButton.y = (StateMachine.canvas.height / 2) - (this.startButton.h / 2);
+            this.startButton.update(delta);
         }
     }
 

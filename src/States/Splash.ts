@@ -23,7 +23,7 @@ export default class Splash extends IState {
         ]);
     }
 
-    public async update(delta:number, stateMachine: StateMachine){
+    public async update(delta:number){
         if(!this.switch){
             this.counter -= delta * 10;
             if(this.counter <= 0){
@@ -34,9 +34,8 @@ export default class Splash extends IState {
             if(this.counter >= 255){
                 let state = new MainMenu();
                 await state.init();
-                stateMachine.states.pop();
-                stateMachine.states.push(state);
-                //TODO: add menu state here
+                StateMachine.states.pop();
+                StateMachine.states.push(state);
             }    
         }
     }

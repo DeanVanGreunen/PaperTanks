@@ -5,7 +5,7 @@ export default class IState {
 
     }
 
-    public update(delta:number, stateMachine: StateMachine){
+    public update(delta:number){
 
     }
 
