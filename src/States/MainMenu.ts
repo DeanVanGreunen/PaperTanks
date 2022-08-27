@@ -11,6 +11,7 @@ export default class MainMenu extends IState {
     switch:boolean = false; 
     showMenu:boolean = false;
     startButton:Button;
+    quitButton:Button;
     constructor(){
         super();
 
@@ -33,12 +34,33 @@ export default class MainMenu extends IState {
         this.startButton.size = "32px";
         this.startButton.w = 150;
         this.startButton.h = 48;
-        this.startButton.onclick = async () => {            
+        this.startButton.onclick = async () => {   
+            // TODO: Start Game
+        };
+        this.startButton.x = (StateMachine.canvas.width / 2) - (this.startButton.w / 2);
+        this.startButton.y = (StateMachine.canvas.height / 2) - (this.startButton.h / 2);
+        
+        this.quitButton = new Button();
+        this.quitButton.text = "Quit Game";
+        this.quitButton.color = "#363636";
+        this.quitButton.hover_color = "#cc0707";
+        this.quitButton.background = "rgb(0,0,0,0)"; // transparent
+        this.quitButton.hover_background = "rgb(0,0,0,0)"; // transparent
+        this.quitButton.border = "#363636";
+        this.quitButton.hover_border = "#cc0707";
+        this.quitButton.font = "PencilRegular";
+        this.quitButton.size = "32px";
+        this.quitButton.w = 150;
+        this.quitButton.h = 48;
+        this.quitButton.onclick = async () => {  
+            // POP last state, and show thankyou for playing message          
             StateMachine.states.pop();
             let state = new ThankYou();
             await state.init();
             StateMachine.states.push(state);
         };
+        this.quitButton.x = (StateMachine.canvas.width / 2) - (this.quitButton.w / 2);
+        this.quitButton.y = (StateMachine.canvas.height / 2) - (this.quitButton.h / 2) + this.startButton.h + 8;
 
 
         // load assessts
@@ -75,9 +97,8 @@ export default class MainMenu extends IState {
                 this.counter = 0;
             }    
 
-            this.startButton.x = (StateMachine.canvas.width / 2) - (this.startButton.w / 2);
-            this.startButton.y = (StateMachine.canvas.height / 2) - (this.startButton.h / 2);
             this.startButton.update(delta);
+            this.quitButton.update(delta);
         }
     }
 
@@ -109,6 +130,7 @@ export default class MainMenu extends IState {
         
         if(this.showMenu){ // if enabled show menu buttons           
             this.startButton.render(canvas);
+            this.quitButton.render(canvas);
         }
 
         // used for fading
