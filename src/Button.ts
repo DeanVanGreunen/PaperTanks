@@ -34,16 +34,27 @@ export default class Button {
         let m_x = StateMachine.mouse_x;
         let m_y = StateMachine.mouse_y;
         // todo: check if hover
-        this.isHover = (m_x >= this.x) && (m_y >= this.y) && (m_x <= this.x + this.h) && (m_y <= this.y + this.h);
+        this.isHover = (m_x >= this.x) && (m_y >= this.y) && (m_x <= this.x + this.w) && (m_y <= this.y + this.h);
     }
 
     public render(canvas:any){     
         let ctx = canvas.getContext("2d");
+        // render border
+        ctx.strokeStyle = !this.isHover ? this.border : this.hover_border;
+        ctx.lineWidth = 0.75;
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x , this.y + this.h);
+        ctx.lineTo(this.x + this.w , this.y + this.h);
+        ctx.lineTo(this.x + this.w , this.y);
+        ctx.lineTo(this.x, this.y);
+        ctx.stroke();
+        // render text
         ctx.beginPath();
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.font = `normal ${this.size} ${this.font}`;
         ctx.fillStyle = !this.isHover ? this.color : this.hover_color;
-        ctx.fillText(this.text,this.x, this.y);        
+        ctx.fillText(this.text,this.x + (this.w / 2), this.y + (this.h / 2));        
     }
 }
