@@ -14,13 +14,6 @@ export default class Splash extends IState {
     public init(){
         return Promise.all([
             (new Promise((resolve, reject)=>{
-                this.grid = new Image();
-                this.grid.src = 'assets/images/grid.png';
-                this.grid.onload = () => {
-                    resolve(true);
-                };
-            })),
-            (new Promise((resolve, reject)=>{
                 this.logo = new Image();
                 this.logo.src = 'assets/images/logo.png';
                 this.logo.onload = () => {
@@ -55,16 +48,30 @@ export default class Splash extends IState {
         ctx.imageSmoothingEnabled = false;
         
         // draw grid here #58aff3
-        for(let i=0;i<20;i++){
+        for(let i=0;i<40;i++){
             ctx.beginPath();
+            ctx.lineWidth = 0.25;
+            ctx.strokeStyle = '#58aff3';
             ctx.moveTo(0, i * 12);
             ctx.lineTo(canvas.width, i * 12);
             ctx.stroke();
         }
         
         ctx.drawImage(this.logo, 0, 0, this.logo.width, this.logo.height, x, y, this.logo.width, this.logo.height);
-        
+
         ctx.fillStyle = `rgba(229,229,229, ${this.counter / 225})`;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        if(this.counter > 0){
+            // draw grid here #58aff3
+            for(let i=0;i<40;i++){
+                ctx.beginPath();
+                ctx.lineWidth = 0.25;
+                ctx.strokeStyle = `rgba(88, 175, 243, ${this.counter / 225})`;
+                ctx.moveTo(0, i * 12);
+                ctx.lineTo(canvas.width, i * 12);
+                ctx.stroke();
+            }
+        }
     }
 }

@@ -1,7 +1,7 @@
 import StateMachine from "./StateMachine";
 
-export default class IState {
-        
+export default class IButton {
+
 
     public update(delta:number, stateMachine: StateMachine){
 

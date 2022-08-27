@@ -42,6 +42,8 @@ export default class StateMachine {
         let ctx = this.canvas.getContext("2d");
         ctx.fillStyle = "#E5E5E5";
         ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        
 
         for(let i=0;i<this.states.length; i++){
             this.states[i].render(this.canvas);
