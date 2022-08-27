@@ -18,6 +18,8 @@ You may make derivitive works however you may not sell these derivied works or t
 
 Things to do.
 
+- [ ] Hook into mouse position relative to the canvas, which is repositioned to the middle of the canvas, and mouse up/down events
+- [ ] Hook into keyboard, press, up/down events
 - [ ] Add Button Component (used for `Start Game`, and `"Multiplayer" <- Disabled` buttons)
 - [ ] Add Game Component (this will contain, the entire game logic)
 - [ ] Add Level Component (used for level selection and map logic)
