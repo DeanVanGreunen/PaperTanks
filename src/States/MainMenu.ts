@@ -1,4 +1,5 @@
 import IButton from "../IButton";
+import StartGameButton from "../Buttons/StartGame";
 import IState from "../IState";
 import StateMachine from "../StateMachine";
 
@@ -15,6 +16,24 @@ export default class MainMenu extends IState {
     }
 
     public init(){
+
+        // create buttons
+        this.startButton = new StartGameButton();
+        this.startButton.text = "Start Game";
+        this.startButton.color = "#4c4c4c";
+        this.startButton.hover_color = "#cc0707";
+        this.startButton.background = "rgb(0,0,0,0)"; // transparent
+        this.startButton.hover_background = "rgb(0,0,0,0)"; // transparent
+        this.startButton.border = "#4c4c4c";
+        this.startButton.hover_border = "#cc0707";
+        this.startButton.font = "";
+        this.startButton.w = 128;
+        this.startButton.h = 32;
+        this.startButton.x = 0;
+        this.startButton.y = 0;
+
+
+        // load assessts
         return (new Promise((resolve, reject)=>{
             this.game_name_logo = new Image();
             this.game_name_logo.src = 'assets/images/game_name_logo.png';
@@ -47,6 +66,8 @@ export default class MainMenu extends IState {
             if(this.counter <= 0){
                 this.counter = 0;
             }    
+
+            this.startButton.update(delta, stateMachine);
         }
     }
 
@@ -75,8 +96,8 @@ export default class MainMenu extends IState {
         ctx.stroke();
 
         ctx.drawImage(this.game_name_logo, 0, 0, this.game_name_logo.width, this.game_name_logo.height, this.game_name_logo_x, this.game_name_logo_y, this.game_name_logo.width, this.game_name_logo.height);        
-        if(this.showMenu){ // if enabled show menu buttons
-
+        if(this.showMenu){ // if enabled show menu buttons           
+            this.startButton.render(canvas);
         }
         // used for fading
         ctx.fillStyle = `rgba(229,229,229, ${this.counter / 225})`;
