@@ -69,8 +69,8 @@ export default class MainMenu extends IState {
                 this.counter = 0;
             }    
 
-            this.startButton.x = (stateMachine.canvas.height / 2) - 75;
-            this.startButton.y = (stateMachine.canvas.width / 2) - 24;
+            this.startButton.x = (stateMachine.canvas.width / 2) - (this.startButton.w / 2);
+            this.startButton.y = (stateMachine.canvas.height / 2) - (this.startButton.h / 2);
             this.startButton.update(delta, stateMachine);
         }
     }
