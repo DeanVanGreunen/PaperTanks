@@ -3,6 +3,7 @@ import StateMachine from "../StateMachine";
 import MainMenu from "./MainMenu";
 
 export default class Splash extends IState {
+    grid:any;
     logo:any;
     counter:number = 255;   
     switch:boolean = false; 
@@ -11,13 +12,22 @@ export default class Splash extends IState {
     }
 
     public init(){
-        return (new Promise((resolve, reject)=>{
-            this.logo = new Image();
-            this.logo.src = 'assets/images/logo.png';
-            this.logo.onload = () => {
-                resolve(true);
-            };
-        }));
+        return Promise.all([
+            (new Promise((resolve, reject)=>{
+                this.grid = new Image();
+                this.grid.src = 'assets/images/grid.png';
+                this.grid.onload = () => {
+                    resolve(true);
+                };
+            })),
+            (new Promise((resolve, reject)=>{
+                this.logo = new Image();
+                this.logo.src = 'assets/images/logo.png';
+                this.logo.onload = () => {
+                    resolve(true);
+                };
+            })),
+        ]);
     }
 
     public async update(delta:number, stateMachine: StateMachine){
@@ -43,6 +53,15 @@ export default class Splash extends IState {
         let x = (canvas.width / 2) - ( this.logo.width / 2);
         let y = (canvas.height / 2) - ( this.logo.height / 2);
         ctx.imageSmoothingEnabled = false;
+        
+        // draw grid here #58aff3
+        for(let i=0;i<20;i++){
+            ctx.beginPath();
+            ctx.moveTo(0, i * 12);
+            ctx.lineTo(canvas.width, i * 12);
+            ctx.stroke();
+        }
+        
         ctx.drawImage(this.logo, 0, 0, this.logo.width, this.logo.height, x, y, this.logo.width, this.logo.height);
         
         ctx.fillStyle = `rgba(229,229,229, ${this.counter / 225})`;
