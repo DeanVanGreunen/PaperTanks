@@ -33,7 +33,7 @@ export default class Button {
 
     public render(canvas:any){     
         let ctx = canvas.getContext("2d");
-        ctx.font = `${this.size} normal ${this.font}`;
+        ctx.font = `${this.size} ${this.font}`;
         ctx.fillText(this.text,0,0);
     }
 }
