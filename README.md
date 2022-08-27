@@ -18,10 +18,13 @@ You may make derivitive works however you may not sell these derivied works or t
 
 Things to do.
 
-- [ ] Add Button Component (used for `Start Game`, and `Settings` buttons)
+- [ ] Add Button Component (used for `Start Game`, and `"Multiplayer" <- Disabled` buttons)
 - [ ] Add Game Component (this will contain, the entire game logic)
 - [ ] Add Level Component (used for level selection and map logic)
 - [ ] Add Player Entity (Tank component, with custom Player driven AI Agent)
 - [ ] Add Base Enemy Entity (Thank component, with AI Agent)
 - [ ] Add JSON parsing for level loading, such as `level_1.json`
 - [ ] Add Viewport Navigation and tie to player position within the game world.
+- [ ] Add `Game over`, `Match Won`, and `Match Lost` States (the latter 2 will be used in MP)
+- [ ] Complete 2D Physics Engine (Collisions) 
+- [ ] Provision time for R&D for Multiplayer Support
