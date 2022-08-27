@@ -6,6 +6,11 @@ export default class StateMachine {
     static mustQuit:boolean = false;
     canvas:any | null = null;
     states:IState[];
+
+    mouse:any;
+    keyboard:any;
+
+
     constructor(canvas:any){
         this.canvas = canvas;   
 
