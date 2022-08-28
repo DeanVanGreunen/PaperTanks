@@ -15,6 +15,7 @@ export default class StateMachine {
         isRightArrow: false,
         isUpArrow: false,
         isDownArrow: false,
+        isSpace: false,
     };
 
 
@@ -49,6 +50,9 @@ export default class StateMachine {
                     break;
                 case "ArrowRight":
                     StateMachine.keyboard.isRightArrow = true;
+                    break;                    
+                case "Space":
+                    StateMachine.keyboard.isSpace = true;
                     break;
             }
         });
@@ -65,6 +69,9 @@ export default class StateMachine {
                     break;
                 case "ArrowRight":
                     StateMachine.keyboard.isRightArrow = false;
+                    break;                
+                case "Space":
+                    StateMachine.keyboard.isSpace = false;
                     break;
             }
         });

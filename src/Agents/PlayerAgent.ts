@@ -1,6 +1,8 @@
 import IAgent from './IAgent';
 import StateMachine from '../StateMachine';
 import Tank from '../GameObjects/Tank';
+import Game from '../States/Game';
+import Bullet from '../GameObjects/Bullet';
 
 export default class PlayerAgent extends IAgent {
     public update(delta:number, tank:Tank){
@@ -16,6 +18,10 @@ export default class PlayerAgent extends IAgent {
         } else if(StateMachine.keyboard.isDownArrow){
             tank.agent.y += 10 * delta;            
             tank.agent.d = 2;       
+        } else if(StateMachine.keyboard.isSpace){
+            let vx = 0;
+            let vy = 0;
+            Game.GameObjects.push(new Bullet(tank.agent.x, tank.agent.y, 8, vx, vy));
         }
 
         // limit player movement on page for edges

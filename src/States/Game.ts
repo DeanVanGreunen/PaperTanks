@@ -6,7 +6,7 @@ import BaseTank from "./../Tanks/BaseTank";
 import StateMachine from "../StateMachine";
 
 export default class Game extends IState {
-    gameobjects:GameObject[] = [];
+    static GameObjects:GameObject[] = [];
     constructor(){
         super();
 
@@ -14,18 +14,18 @@ export default class Game extends IState {
         this.update = this.update.bind(this);
         this.render = this.render.bind(this);
         
-        this.gameobjects.push(new Tank(new PlayerAgent(0,0, 32, 32), new BaseTank()));
+        Game.GameObjects.push(new Tank(new PlayerAgent(0,0, 32, 32), new BaseTank()));
     }
 
     public async init(){
-        for(let i=0;i<this.gameobjects.length;i++){
-            this.gameobjects[i].init();
+        for(let i=0;i<Game.GameObjects.length;i++){
+            Game.GameObjects[i].init();
         }
     }
 
     public async update(delta:number){
-        for(let i=0;i<this.gameobjects.length;i++){
-            this.gameobjects[i].update(delta, this);
+        for(let i=0;i<Game.GameObjects.length;i++){
+            Game.GameObjects[i].update(delta, this);
         }
     }
 
@@ -49,8 +49,8 @@ export default class Game extends IState {
         ctx.lineTo(24, StateMachine.canvas.height);
         ctx.stroke();
 
-        for(let i=0;i<this.gameobjects.length;i++){
-            this.gameobjects[i].render(this);
+        for(let i=0;i<Game.GameObjects.length;i++){
+            Game.GameObjects[i].render(this);
         }
     }
 }
