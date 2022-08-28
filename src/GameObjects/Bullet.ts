@@ -37,7 +37,9 @@ export default class Bullet extends GameObject {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
         ctx.lineWidth = 0.75;
-        ctx.strokeStyle = '#58aff3';
+        ctx.fillStyle = "rgba(225, 0, 0, 1)";
+        ctx.strokeStyle = "rgba(225, 0, 0, 1)";
         ctx.stroke();
+        //ctx.fill();
     }
 }
