@@ -10,7 +10,12 @@ export default class StateMachine {
     static mouse_x:any;
     static mouse_y:any;
     static mouse_down:boolean = false;
-    static keyboard:any;
+    static keyboard:any = {
+        isLeftArrow: false,
+        isRightArrow: false,
+        isUpArrow: false,
+        isDownArrow: false,
+    };
 
 
     constructor(canvas:any){
@@ -31,6 +36,38 @@ export default class StateMachine {
             StateMachine.mouse_down = e.button == 0;
         });     
         // bind to keyboard
+        document.addEventListener('keydown', function(event) {
+            switch (event.code){
+                case "ArrowUp":
+                    StateMachine.keyboard.isUpArrow = true;
+                    break;
+                case "ArrowDown":
+                    StateMachine.keyboard.isDownArrow = true;
+                    break;
+                case "ArrowLeft":
+                    StateMachine.keyboard.isLeftArrow = true;
+                    break;
+                case "ArrowRight":
+                    StateMachine.keyboard.isRightArrow = true;
+                    break;
+            }
+        });
+        document.addEventListener('keyup', function(event) {
+            switch (event.code){
+                case "ArrowUp":
+                    StateMachine.keyboard.isUpArrow = false;
+                    break;
+                case "ArrowDown":
+                    StateMachine.keyboard.isDownArrow = false;
+                    break;
+                case "ArrowLeft":
+                    StateMachine.keyboard.isLeftArrow = false;
+                    break;
+                case "ArrowRight":
+                    StateMachine.keyboard.isRightArrow = false;
+                    break;
+            }
+        });
 
         // load splash, pop and add game state
         StateMachine.states = [];
@@ -39,7 +76,7 @@ export default class StateMachine {
         StateMachine.states.push(splash);
 
         // start game loop
-        this.interval = setInterval(this.loop, 33);
+        this.interval = setInterval(this.loop, 15); // 33 = 30fps, 15 for 60fps
     }
 
     loop(){
@@ -59,7 +96,7 @@ export default class StateMachine {
         
 
         for(let i=0;i<StateMachine.states.length; i++){
-            StateMachine.states[i].render(StateMachine.canvas);
+            StateMachine.states[i].render();
         }
 
         // reset mouse down

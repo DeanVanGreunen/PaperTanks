@@ -44,8 +44,8 @@ export default class Button {
         }
     }
 
-    public render(canvas:any){     
-        let ctx = canvas.getContext("2d");
+    public render(){     
+        let ctx = StateMachine.canvas.getContext("2d");
         // render border
         ctx.strokeStyle = !this.isHover ? this.border : this.hover_border;
         ctx.lineWidth = 0.75;

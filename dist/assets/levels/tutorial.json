@@ -1,0 +1,15 @@
+{
+    "name": "Turorial Level",
+    "gameobjects" : [
+        {
+            "type": "Tank",
+            "tank": {
+                "agent": "Player",
+                "position": {
+                    "x": 0,
+                    "y": 0
+                }
+            }
+        }
+    ]
+}

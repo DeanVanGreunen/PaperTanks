@@ -1,0 +1,56 @@
+import IState from "../IState";
+import GameObject from "../GameObjects";
+import Tank from "../GameObjects/Tank";
+import PlayerAgent from "./../Agents/PlayerAgent";
+import BaseTank from "./../Tanks/BaseTank";
+import StateMachine from "../StateMachine";
+
+export default class Game extends IState {
+    gameobjects:GameObject[] = [];
+    constructor(){
+        super();
+
+        this.init = this.init.bind(this);
+        this.update = this.update.bind(this);
+        this.render = this.render.bind(this);
+        
+        this.gameobjects.push(new Tank(new PlayerAgent(0,0, 32, 32), new BaseTank()));
+    }
+
+    public async init(){
+        for(let i=0;i<this.gameobjects.length;i++){
+            this.gameobjects[i].init();
+        }
+    }
+
+    public async update(delta:number){
+        for(let i=0;i<this.gameobjects.length;i++){
+            this.gameobjects[i].update(delta, this);
+        }
+    }
+
+    public render(){        
+        let ctx = StateMachine.canvas.getContext("2d");
+        // draw grid here #58aff3
+        for(let i=0;i<40;i++){
+            ctx.beginPath();
+            ctx.lineWidth = 0.25;
+            ctx.strokeStyle = '#58aff3'; // 88, 175, 243
+            ctx.moveTo(0, i * 12);
+            ctx.lineTo(StateMachine.canvas.width, i * 12);
+            ctx.stroke();
+        }
+
+        
+        ctx.beginPath();
+        ctx.lineWidth = 0.25;
+        ctx.strokeStyle = `rgba(225, 0, 0, 1)`;
+        ctx.moveTo(24, 0);
+        ctx.lineTo(24, StateMachine.canvas.height);
+        ctx.stroke();
+
+        for(let i=0;i<this.gameobjects.length;i++){
+            this.gameobjects[i].render(this);
+        }
+    }
+}

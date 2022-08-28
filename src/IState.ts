@@ -9,7 +9,7 @@ export default class IState {
 
     }
 
-    public render(canvas:any){
+    public render(){
 
     }
 }

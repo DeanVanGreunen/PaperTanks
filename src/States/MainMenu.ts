@@ -1,6 +1,7 @@
 import Button from "../Button";
 import IState from "../IState";
 import StateMachine from "../StateMachine";
+import Game from "./Game";
 import ThankYou from "./ThankYou";
 
 export default class MainMenu extends IState {
@@ -34,8 +35,11 @@ export default class MainMenu extends IState {
         this.startButton.size = "32px";
         this.startButton.w = 150;
         this.startButton.h = 48;
-        this.startButton.onclick = async () => {   
-            // TODO: Start Game
+        this.startButton.onclick = async () => { 
+            StateMachine.states.pop();
+            let state = new Game();
+            await state.init();
+            StateMachine.states.push(state);
         };
         this.startButton.x = (StateMachine.canvas.width / 2) - (this.startButton.w / 2);
         this.startButton.y = (StateMachine.canvas.height / 2) - (this.startButton.h / 2);
@@ -102,10 +106,10 @@ export default class MainMenu extends IState {
         }
     }
 
-    public render(canvas:any){
-        let ctx = canvas.getContext("2d");
-        let x = (canvas.width / 2) - ( this.game_name_logo.width / 2);
-        let y = (canvas.height / 2) - ( this.game_name_logo.height / 2);
+    public render(){
+        let ctx = StateMachine.canvas.getContext("2d");
+        let x = (StateMachine.canvas.width / 2) - ( this.game_name_logo.width / 2);
+        let y = (StateMachine.canvas.height / 2) - ( this.game_name_logo.height / 2);
         ctx.imageSmoothingEnabled = false;
         
         // draw grid here #58aff3
@@ -114,7 +118,7 @@ export default class MainMenu extends IState {
             ctx.lineWidth = 0.25;
             ctx.strokeStyle = '#58aff3'; // 88, 175, 243
             ctx.moveTo(0, i * 12);
-            ctx.lineTo(canvas.width, i * 12);
+            ctx.lineTo(StateMachine.canvas.width, i * 12);
             ctx.stroke();
         }
 
@@ -123,19 +127,19 @@ export default class MainMenu extends IState {
         ctx.lineWidth = 0.25;
         ctx.strokeStyle = `rgba(225, 0, 0, 1)`;
         ctx.moveTo(24, 0);
-        ctx.lineTo(24, canvas.height);
+        ctx.lineTo(24, StateMachine.canvas.height);
         ctx.stroke();
 
         ctx.drawImage(this.game_name_logo, 0, 0, this.game_name_logo.width, this.game_name_logo.height, this.game_name_logo_x, this.game_name_logo_y, this.game_name_logo.width, this.game_name_logo.height);        
         
         if(this.showMenu){ // if enabled show menu buttons           
-            this.startButton.render(canvas);
-            this.quitButton.render(canvas);
+            this.startButton.render();
+            this.quitButton.render();
         }
 
         // used for fading
         ctx.fillStyle = `rgba(229,229,229, ${this.counter / 225})`;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillRect(0, 0, StateMachine.canvas.width, StateMachine.canvas.height);
         
         if(this.counter > 0){
             // draw grid here #58aff3
@@ -144,7 +148,7 @@ export default class MainMenu extends IState {
                 ctx.lineWidth = 0.25;
                 ctx.strokeStyle = `rgba(88, 175, 243, ${this.counter / 225})`;
                 ctx.moveTo(0, i * 12);
-                ctx.lineTo(canvas.width, i * 12);
+                ctx.lineTo(StateMachine.canvas.width, i * 12);
                 ctx.stroke();
             }
             
@@ -152,7 +156,7 @@ export default class MainMenu extends IState {
             ctx.lineWidth = 0.25;
             ctx.strokeStyle = `rgba(225, 0, 0, ${this.counter / 225})`;
             ctx.moveTo(24, 0);
-            ctx.lineTo(24, canvas.height);
+            ctx.lineTo(24, StateMachine.canvas.height);
             ctx.stroke();
         }
 
