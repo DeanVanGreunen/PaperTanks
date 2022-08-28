@@ -10,8 +10,10 @@ export default class BaseTank extends ITankRender {
         let y = tank.agent.y;
         let h = tank.agent.h;
         let w = tank.agent.w;
-        let xdir = tank.agent.xdir;
-        let ydir = tank.agent.ydir;
+        let d = tank.agent.d;
+
+        let cx = x + w/2;
+        let cy = w + h/2;
 
         // draw tank - base tank
         ctx.beginPath();
@@ -27,11 +29,30 @@ export default class BaseTank extends ITankRender {
         // draw tank circle
         
         ctx.beginPath();
-        ctx.arc(x + w/2, y + h/2, w/4, 0, 2 * Math.PI, false);
+        ctx.arc(cx, y, w/4, 0, 2 * Math.PI, false);
         ctx.lineWidth = 0.75;
         ctx.strokeStyle = '#58aff3';
         ctx.stroke();
 
         // draw tank gun
+        switch(d){
+            case 0: // up
+                ctx.beginPath();
+                ctx.lineWidth = 0.75;
+                ctx.strokeStyle = '#58aff3';
+                ctx.moveTo(cx - 2, cy);
+                ctx.lineTo(cx - 2, cy - 8);
+                ctx.lineTo(cx + 2, cy - 8);
+                ctx.lineTo(cx + 2, cy - 0);
+                ctx.lineTo(cx + 0, cy - 0);
+                ctx.stroke();
+                break;
+            case 1: // left
+                break;
+            case 2: // down
+                break;
+            case 3: // right
+                break;
+        }
     }
 }

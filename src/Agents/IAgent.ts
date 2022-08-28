@@ -7,8 +7,7 @@ export default class IAgent {
     public w:number; // width
     public h:number; // height
 
-    public xdir:number = 0; // -1 = left, 1 = right
-    public ydir:number = -1; // -1 = top, 1 = bottom
+    public d:number = 0; // 0 = up, 1 = left, 2 = down, 3 = right
     
     public constructor(x:number, y:number, w:number, h:number){
         this.x = x;
