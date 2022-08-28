@@ -6,14 +6,16 @@ export default class PlayerAgent extends IAgent {
     public update(delta:number, tank:Tank){
         if(StateMachine.keyboard.isLeftArrow){
             tank.agent.x -= 10 * delta;
+            tank.agent.d = 1;       
         } else if(StateMachine.keyboard.isRightArrow){
             tank.agent.x += 10 * delta;
-        }
-        
-        if(StateMachine.keyboard.isUpArrow){
+            tank.agent.d = 3;       
+        } else if(StateMachine.keyboard.isUpArrow){
             tank.agent.y -= 10 * delta;            
+            tank.agent.d = 0;       
         } else if(StateMachine.keyboard.isDownArrow){
             tank.agent.y += 10 * delta;            
+            tank.agent.d = 2;       
         }
 
         // limit player movement on page for edges
