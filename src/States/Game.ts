@@ -32,8 +32,18 @@ export default class Game extends IState {
     }
 
     public async update(delta:number){
+        // update
         for(let i=0;i<Game.GameObjects.length;i++){
             Game.GameObjects[i].update(delta, this);
+        }
+
+        // check for collisions
+        for(let i=0;i<Game.GameObjects.length;i++){
+            for(let j=0;j<Game.GameObjects.length;j++){
+                if(i !== j){
+                    Game.GameObjects[i].onCollision(Game.GameObjects[j]);
+                }
+            }
         }
     }
 
