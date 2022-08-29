@@ -34,22 +34,22 @@ export default class PlayerAgent extends IAgent {
             let speed = 125 * delta;            
             switch(this.d){
                 case 0: // up    
-                yy -= 32;
+                yy -= 38;
                 vx = 0 * speed;
                 vy = -1 * speed;
                 break;
             case 1: // left       
-                xx -= 32; 
+                xx -= 38; 
                 vx = -1 * speed;
                 vy = 0 * speed;
                 break;
             case 2: // down
-                yy += 32;
+                yy += 38;
                 vx = 0 * speed;
                 vy = 1 * speed;
                 break;
             case 3: // right            
-                xx += 32; 
+                xx += 38; 
                 vx = 1 * speed;
                 vy = 0 * speed;
                 break;
