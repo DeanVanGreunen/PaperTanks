@@ -31,6 +31,7 @@ export default class Tank extends GameObject {
 
     public onCollision(other:GameObject){
         if(other instanceof  Bullet){ // handle bullet collection
+            console.log("Bullet Hit!");
             this.agent.health -= other.damage;
             Game.GameObjects = Game.GameObjects.filter((el)=>{ !other}); // remove bullet
             Game.GameObjects = Game.GameObjects.filter((el)=>{ !this}); // remove self
