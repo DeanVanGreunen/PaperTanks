@@ -25,12 +25,12 @@ export default class Splash extends IState {
 
     public async update(delta:number){
         if(!this.switch){
-            this.counter -= delta * 10;
+            this.counter -= delta * 20;
             if(this.counter <= 0){
                 this.switch = true;
             }    
         } else {
-            this.counter += delta * 10;
+            this.counter += delta * 20;
             if(this.counter >= 255){
                 let state = new MainMenu();
                 await state.init();

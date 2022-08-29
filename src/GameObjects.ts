@@ -1,8 +1,7 @@
 import StateMachine from "./StateMachine";
 import Game from "./States/Game";
 
-export default class GameObject {
-    
+export default class GameObject {    
     public init(){
 
     }
@@ -13,5 +12,8 @@ export default class GameObject {
 
     public render(game:Game){
         // StateMachine.canvas
+    }
+    public onCollision(other:GameObject){
+        
     }
 }

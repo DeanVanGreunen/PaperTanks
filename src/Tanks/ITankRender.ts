@@ -7,6 +7,6 @@ export default class ITankRender {
     }
 
     public render(tank:Tank){
-
+        //StateMachine.canvas = canvas;
     }
 }

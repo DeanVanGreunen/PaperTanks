@@ -30,3 +30,12 @@ Things to do.
 - [ ] Add `Game over`, `Match Won`, and `Match Lost` States (the latter 2 will be used in MP)
 - [ ] Complete 2D Physics Engine (Collisions) 
 - [ ] Provision time for R&D for Multiplayer Support
+
+
+# Development
+
+- Clone Repo
+- Run `npm install`
+- Start `npm run start`
+- Load `index.html` via the `dist` folder
+- actual js library is in `dist/bundler.js`

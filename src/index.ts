@@ -12,5 +12,9 @@ window.addEventListener("load", async () => {
     const canvas = document.querySelector("canvas");
     let state = new StateMachine(canvas);
     state.init();
-    
+    window.requestAnimationFrame(time => {
+        state.previousTime = time;
+      
+        window.requestAnimationFrame(state.loop);
+    });
 })

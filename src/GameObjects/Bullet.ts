@@ -11,6 +11,8 @@ export default class Bullet extends GameObject {
 
     vx:number;
     vy:number;
+
+    damage:number = 0;
     constructor(x:number, y:number, r:number, vx:number, vy:number){
         super();
         this.init = this.init.bind(this);
@@ -42,4 +44,6 @@ export default class Bullet extends GameObject {
         ctx.stroke();
         //ctx.fill();
     }
+
+    
 }

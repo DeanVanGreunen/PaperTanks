@@ -82,12 +82,12 @@ export default class MainMenu extends IState {
             this.game_name_logo_x = (620 / 2) - ( this.game_name_logo.width / 2);
             this.game_name_logo_y = (480 / 2) - ( this.game_name_logo.height / 2);
             if(!this.switch){
-                this.counter -= delta * 10;
+                this.counter -= delta * 20;
                 if(this.counter <= 0){
                     this.switch = true;
                 }    
             } else {
-                this.counter += delta * 10;
+                this.counter += delta * 20;
                 if(this.counter >= 255){
                     this.showMenu = true;
                 }    
@@ -96,7 +96,7 @@ export default class MainMenu extends IState {
             // now move game logo up and display buttons, then fade back in
             this.game_name_logo_x = (620 / 2) - ( this.game_name_logo.width / 2);
             this.game_name_logo_y = 12;
-            this.counter -= delta * 10;
+            this.counter -= delta * 20;
             if(this.counter <= 0){
                 this.counter = 0;
             }    

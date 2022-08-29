@@ -1,4 +1,3 @@
-import StateMachine from "../StateMachine";
 import Tank from "../GameObjects/Tank";
 
 export default class IAgent {
@@ -8,6 +7,8 @@ export default class IAgent {
     public h:number; // height
 
     public d:number = 0; // 0 = up, 1 = left, 2 = down, 3 = right
+
+    public health:number = 0;
     
     public constructor(x:number, y:number, w:number, h:number){
         this.x = x;
@@ -17,6 +18,9 @@ export default class IAgent {
     }
 
     public update(delta:number, tank:Tank){
+
+    }
+    public render(tank:Tank){
 
     }
 }

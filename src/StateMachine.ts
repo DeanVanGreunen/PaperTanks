@@ -2,7 +2,7 @@ import IState from "./IState";
 import Splash from "./States/Splash";
 
 export default class StateMachine {
-    interval:any;
+    previousTime = 0.0;
     static mustQuit:boolean = false;
     static canvas:any | null = null;
     static states:IState[];
@@ -83,15 +83,14 @@ export default class StateMachine {
         StateMachine.states.push(splash);
 
         // start game loop
-        this.interval = setInterval(this.loop, 15); // 33 = 30fps, 15 for 60fps
+        //this.interval = setInterval(this.loop, 15); // 33 = 30fps, 15 for 60fps
     }
 
-    loop(){
-        if(StateMachine.mustQuit){
-            clearInterval(this.interval);
-        }
+    loop(time:number){
+        const dt = (time - this.previousTime) / 100; // convert to 100th of a second
+        this.previousTime = time;
         for(let i=0;i<StateMachine.states.length; i++){
-            StateMachine.states[i].update(0.33);
+            StateMachine.states[i].update(dt);
         }
 
 
@@ -108,5 +107,8 @@ export default class StateMachine {
 
         // reset mouse down
         StateMachine.mouse_down = false;
+
+        // request next loop
+        window.requestAnimationFrame(this.loop);
     }
 }
