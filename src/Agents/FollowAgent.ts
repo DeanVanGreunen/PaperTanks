@@ -19,6 +19,12 @@ export default class FollowAgent extends IAgent {
         
         if(tank.agent.x + tank.agent.w > StateMachine.canvas.width - 8) tank.agent.x = StateMachine.canvas.width - (tank.agent.w + 8);
         if(tank.agent.y + tank.agent.h > StateMachine.canvas.height - 8) tank.agent.y = StateMachine.canvas.height - (tank.agent.h + 8);
+        
+
+        tank.x = tank.agent.x;
+        tank.y = tank.agent.y;
+        tank.w = tank.agent.w;
+        tank.h = tank.agent.h;
     }
     public render(tank:Tank){        
         let ctx = StateMachine.canvas.getContext("2d");    

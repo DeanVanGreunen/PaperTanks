@@ -32,9 +32,19 @@ export default class Game extends IState {
     }
 
     public async update(delta:number){
+        Game.GameObjects = Game.GameObjects.filter((go)=>{ return !go.mustDelete}); 
         // update
         for(let i=0;i<Game.GameObjects.length;i++){
-            Game.GameObjects[i].update(delta, this);
+            Game.GameObjects[i].update(delta, this); // update
+
+            // remove from player field if off screen (bullets, ammo, etc)
+            let mustDelete = !(
+                    (Game.GameObjects[i].x > 0) &&
+                    (Game.GameObjects[i].y > 0) &&
+                    (Game.GameObjects[i].x < StateMachine.canvas.width) &&
+                    (Game.GameObjects[i].y < StateMachine.canvas.height)
+                );            
+            Game.GameObjects[i].mustDelete = mustDelete;
         }
 
         // check for collisions

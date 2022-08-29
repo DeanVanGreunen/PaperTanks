@@ -1,7 +1,12 @@
 import StateMachine from "./StateMachine";
 import Game from "./States/Game";
 
-export default class GameObject {    
+export default class GameObject { 
+    mustDelete:boolean = false; 
+    x:number;
+    y:number;  
+    w:number;
+    h:number;  
     public init(){
 
     }

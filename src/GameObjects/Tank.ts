@@ -30,11 +30,20 @@ export default class Tank extends GameObject {
     }
 
     public onCollision(other:GameObject){
+        let isoverLap = false;
         if(other instanceof  Bullet){ // handle bullet collection
-            console.log("Bullet Hit!");
-            this.agent.health -= other.damage;
-            Game.GameObjects = Game.GameObjects.filter((el)=>{ !other}); // remove bullet
-            Game.GameObjects = Game.GameObjects.filter((el)=>{ !this}); // remove self
+            isoverLap = 
+                other.x >= this.agent.x &&
+                other.y >= this.agent.y &&
+                other.y + other.r <= this.agent.x + this.agent.w &&
+                other.y + other.r <= this.agent.y + this.agent.h;
+            if(isoverLap){
+                this.agent.health -= other.damage;
+                other.mustDelete = true;
+                if(this.agent.health <= 0){
+                    this.mustDelete = true;
+                }
+            }
         }
     }
 }

@@ -65,6 +65,11 @@ export default class PlayerAgent extends IAgent {
         if(tank.agent.y + tank.agent.h > StateMachine.canvas.height - 8) tank.agent.y = StateMachine.canvas.height - (tank.agent.h + 8);
 
         this.canFire -= delta;
+
+        tank.x = tank.agent.x;
+        tank.y = tank.agent.y;
+        tank.w = tank.agent.w;
+        tank.h = tank.agent.h;
     }
     public render(tank:Tank){        
         let ctx = StateMachine.canvas.getContext("2d");
