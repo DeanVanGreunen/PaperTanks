@@ -4,14 +4,17 @@ import Game from "../States/Game";
 import ITankRender from "../Tanks/ITankRender";
 import Bullet from "./Bullet";
 import StateMachine from "../StateMachine";
+import PlayerAgent from "../Agents/PlayerAgent";
 
 export default class Tank extends GameObject {
     agent:IAgent;
     renderer:ITankRender;
-    constructor(agent:IAgent, renderer:ITankRender){
+    health:number = 100;
+    constructor(agent:IAgent, renderer:ITankRender, health:number){
         super();
         this.agent = agent;
         this.renderer = renderer;
+        this.health = health;
         this.init = this.init.bind(this);
         this.update = this.update.bind(this);
         this.render = this.render.bind(this);
@@ -30,19 +33,19 @@ export default class Tank extends GameObject {
     }
 
     public onCollision(other:GameObject){
-        let isoverLap = false;
-        if(other instanceof  Bullet){ // handle bullet collection
-            isoverLap = 
-                other.x >= this.agent.x &&
-                other.y >= this.agent.y &&
-                other.y + other.r <= this.agent.x + this.agent.w &&
-                other.y + other.r <= this.agent.y + this.agent.h;
+        let isoverLap = // fixed overlapping
+            (this.x < other.x + other.w) &&
+            (this.x + this.w > other.x ) &&
+            (this.y < other.y + other.h) &&
+            (this.y + this.h > other.y);
+        if(other instanceof Bullet){ // handle bullet collection
             if(isoverLap){
-                this.agent.health -= other.damage;
                 other.mustDelete = true;
-                if(this.agent.health <= 0){
+                if(this.health <= 0){
                     this.mustDelete = true;
                 }
+                this.health -= other.damage;
+                Game.score += 10;
             }
         }
     }

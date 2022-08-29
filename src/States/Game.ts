@@ -8,6 +8,8 @@ import FollowAgent from "../Agents/FollowAgent";
 
 export default class Game extends IState {
     static GameObjects:GameObject[] = [];
+    static health:number = 100;
+    static score:number = 0;
     constructor(){
         super();
 
@@ -15,13 +17,13 @@ export default class Game extends IState {
         this.update = this.update.bind(this);
         this.render = this.render.bind(this);
         
-        Game.GameObjects.push(new Tank(new PlayerAgent(0,0, 32, 32), new BaseTank()));
-        Game.GameObjects.push(new Tank(new FollowAgent(StateMachine.canvas.width/2,StateMachine.canvas.height/2, 32, 32), new BaseTank()));
+        Game.GameObjects.push(new Tank(new PlayerAgent(0,0, 32, 32), new BaseTank(), 100));
+        Game.GameObjects.push(new Tank(new FollowAgent(StateMachine.canvas.width/2,StateMachine.canvas.height/2, 32, 32), new BaseTank(), 50));
     }
 
-    public static getPlayer(){
+    public static getPlayer(): Tank{
         let tanks = Game.GameObjects.filter((go)=> go instanceof Tank);
-        let player = tanks.filter((tank)=> (tank as Tank).agent instanceof PlayerAgent)[0];
+        let player = tanks.filter((tank)=> (tank as Tank).agent instanceof PlayerAgent)[0] as Tank;
         return player;
     }
 
@@ -32,21 +34,6 @@ export default class Game extends IState {
     }
 
     public async update(delta:number){
-        Game.GameObjects = Game.GameObjects.filter((go)=>{ return !go.mustDelete}); 
-        // update
-        for(let i=0;i<Game.GameObjects.length;i++){
-            Game.GameObjects[i].update(delta, this); // update
-
-            // remove from player field if off screen (bullets, ammo, etc)
-            let mustDelete = !(
-                    (Game.GameObjects[i].x > 0) &&
-                    (Game.GameObjects[i].y > 0) &&
-                    (Game.GameObjects[i].x < StateMachine.canvas.width) &&
-                    (Game.GameObjects[i].y < StateMachine.canvas.height)
-                );            
-            Game.GameObjects[i].mustDelete = mustDelete;
-        }
-
         // check for collisions
         for(let i=0;i<Game.GameObjects.length;i++){
             for(let j=0;j<Game.GameObjects.length;j++){
@@ -55,6 +42,16 @@ export default class Game extends IState {
                 }
             }
         }
+        // remove deleted items
+        Game.GameObjects = Game.GameObjects.filter((go)=>{ return !go.mustDelete}); 
+        
+        // update
+        for(let i=0;i<Game.GameObjects.length;i++){
+            Game.GameObjects[i].update(delta, this); // update
+            const G = Game.GameObjects[i];
+            // remove from player field if off screen (bullets, ammo, etc)
+            Game.GameObjects[i].mustDelete = (G.x <= 0) ||(G.x + G.w >= StateMachine.canvas.width) || (G.y <= 0) ||(G.y + G.h >= StateMachine.canvas.height);
+        }        
     }
 
     public render(){        

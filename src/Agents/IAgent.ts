@@ -9,6 +9,7 @@ export default class IAgent {
     public d:number = 0; // 0 = up, 1 = left, 2 = down, 3 = right
 
     public health:number = 0;
+    public score:number = 0;
     
     public constructor(x:number, y:number, w:number, h:number){
         this.x = x;

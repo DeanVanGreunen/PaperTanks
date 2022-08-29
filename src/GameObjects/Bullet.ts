@@ -24,6 +24,8 @@ export default class Bullet extends GameObject {
         this.r = r;
         this.vx = vx;
         this.vy = vy;
+        this.w = r;
+        this.h = r;
     }
 
     public async init(){
