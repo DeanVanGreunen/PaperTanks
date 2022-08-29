@@ -4,6 +4,7 @@ import Tank from "../GameObjects/Tank";
 import PlayerAgent from "./../Agents/PlayerAgent";
 import BaseTank from "./../Tanks/BaseTank";
 import StateMachine from "../StateMachine";
+import FollowAgent from "../Agents/FollowAgent";
 
 export default class Game extends IState {
     static GameObjects:GameObject[] = [];
@@ -15,6 +16,13 @@ export default class Game extends IState {
         this.render = this.render.bind(this);
         
         Game.GameObjects.push(new Tank(new PlayerAgent(0,0, 32, 32), new BaseTank()));
+        Game.GameObjects.push(new Tank(new FollowAgent(StateMachine.canvas.width/2,StateMachine.canvas.height/2, 32, 32), new BaseTank()));
+    }
+
+    public static getPlayer(){
+        let tanks = Game.GameObjects.filter((go)=> go instanceof Tank);
+        let player = tanks.filter((tank)=> (tank as Tank).agent instanceof PlayerAgent)[0];
+        return player;
     }
 
     public async init(){

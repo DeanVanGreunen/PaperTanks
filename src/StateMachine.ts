@@ -81,9 +81,6 @@ export default class StateMachine {
         let splash = new Splash();
         await splash.init();
         StateMachine.states.push(splash);
-
-        // start game loop
-        //this.interval = setInterval(this.loop, 15); // 33 = 30fps, 15 for 60fps
     }
 
     loop(time:number){

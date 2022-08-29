@@ -31,7 +31,7 @@ export default class PlayerAgent extends IAgent {
             let vy = 0;
             let xx = tank.agent.x + tank.agent.w / 2;
             let yy = tank.agent.y + tank.agent.h / 2;
-            let speed = 200 * delta;            
+            let speed = 125 * delta;            
             switch(this.d){
                 case 0: // up    
                 yy -= 32;
