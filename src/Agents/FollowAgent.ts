@@ -36,14 +36,19 @@ export default class FollowAgent extends IAgent {
 
         let r1 = Math.random() * 10 * delta;
         let r2 = Math.random() * 10 * delta;
-        if(Math.abs(x2 + r1) >= Math.abs(y2 + r2)){
-            let nx = MathF.lerp(tank.agent.x, player.x, speed)
-            tank.agent.d = tank.agent.x > nx ? 1 : 3
-            tank.agent.x = nx; 
+        let distance = MathF.distance(player.x, tank.x, player.y, tank.y);
+        if(distance >= 64){
+            if(Math.abs(x2 + r1) >= Math.abs(y2 + r2)){
+                let nx = MathF.lerp(tank.agent.x, player.x, speed)
+                tank.agent.d = tank.agent.x > nx ? 1 : 3
+                tank.agent.x = nx; 
+            } else {
+                let ny = MathF.lerp(tank.agent.y, player.y, speed)
+                tank.agent.d = tank.agent.y > ny ? 0 : 2
+                tank.agent.y = ny
+            }
         } else {
-            let ny = MathF.lerp(tank.agent.y, player.y, speed)
-            tank.agent.d = tank.agent.y > ny ? 0 : 2
-            tank.agent.y = ny
+            // align and face player
         }
 
         // limit tank movement on page for edges

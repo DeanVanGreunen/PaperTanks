@@ -17,4 +17,14 @@ export default class MathF {
     
         return value;
     };
+
+    public static distance(x1:number, x2:number, y1:number, y2:number):number{
+        let a = x2 - x1;
+        let b = y2 - y1;
+        let c = a * a;
+        let d = b * b;
+        let e = c + d;
+        let r = Math.sqrt(e);
+        return r;
+    }
 }

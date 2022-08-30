@@ -9,7 +9,6 @@ import Wall from "../GameObjects/Wall";
 
 export default class Game extends IState {
     static GameObjects:GameObject[] = [];
-    static health:number = 100;
     static score:number = 0;
     constructor(){
         super();

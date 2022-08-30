@@ -5,7 +5,6 @@ import Game from '../States/Game';
 import Bullet from '../GameObjects/Bullet';
 
 export default class PlayerAgent extends IAgent {
-    health:number = 100;
     canFire:number = 0;
     public update(delta:number, tank:Tank){
         // move player
@@ -89,7 +88,8 @@ export default class PlayerAgent extends IAgent {
 
         ctx.fillStyle = '#cc0707';
         // fill health bar
-        let width = (96/100) * Game.health;
+        let width = (tank.health/100) * 96;
+        ctx.beginPath();
         ctx.moveTo(0 + padding, 0 + padding);
         ctx.lineTo(0 + padding, 12 + padding);
         ctx.lineTo(width + padding, 12 + padding);
