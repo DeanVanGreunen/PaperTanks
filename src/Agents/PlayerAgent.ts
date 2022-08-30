@@ -26,7 +26,7 @@ export default class PlayerAgent extends IAgent {
         // create bullet
         if(StateMachine.keyboard.isSpace && this.canFire <= 0){
             this.health -= 10 * delta;
-            this.canFire = 10;
+            this.canFire = 5;
             let vx = 0;
             let vy = 0;
             let xx = tank.agent.x + tank.agent.w / 2;

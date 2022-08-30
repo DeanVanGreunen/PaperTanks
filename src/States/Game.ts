@@ -5,6 +5,7 @@ import PlayerAgent from "./../Agents/PlayerAgent";
 import BaseTank from "./../Tanks/BaseTank";
 import StateMachine from "../StateMachine";
 import FollowAgent from "../Agents/FollowAgent";
+import Wall from "../GameObjects/Wall";
 
 export default class Game extends IState {
     static GameObjects:GameObject[] = [];
@@ -17,8 +18,16 @@ export default class Game extends IState {
         this.update = this.update.bind(this);
         this.render = this.render.bind(this);
         
+        // TODO: load level here
+        //  => Load Player at Location
+        //  => Load Enemies' at Location
+        //  => Load Walls
         Game.GameObjects.push(new Tank(new PlayerAgent(0,0, 32, 32), new BaseTank(), 100));
         Game.GameObjects.push(new Tank(new FollowAgent(StateMachine.canvas.width/2,StateMachine.canvas.height/2, 32, 32), new BaseTank(), 50));
+        Game.GameObjects.push(new Wall(50,50, 8, 8));
+        Game.GameObjects.push(new Wall(50,58, 8, 8));
+        Game.GameObjects.push(new Wall(50,66, 8, 8));
+        Game.GameObjects.push(new Wall(58,66, 8, 8));
     }
 
     public static getPlayer(): Tank{

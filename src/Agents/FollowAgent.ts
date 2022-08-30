@@ -10,7 +10,7 @@ export default class FollowAgent extends IAgent {
     public update(delta:number, tank:Tank){
         let player = (Game.getPlayer() as Tank).agent;
         // move tank
-        let speed = delta * Math.random() / 20;
+        let speed = delta * Math.random() / 25;
         // player angel with respect to this enemy tank
         let x2 = Math.round(player.x - tank.x);
         let y2 = Math.round(player.y - tank.y);
