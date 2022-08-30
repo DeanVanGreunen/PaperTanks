@@ -36,6 +36,7 @@ export default class Game extends IState {
     }
 
     public async init(){
+        Game.score = 0;
         for(let i=0;i<Game.GameObjects.length;i++){
             Game.GameObjects[i].init();
         }
