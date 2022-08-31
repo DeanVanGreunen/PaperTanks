@@ -6,6 +6,7 @@ import Bullet from "./Bullet";
 import StateMachine from "../StateMachine";
 import PlayerAgent from "../Agents/PlayerAgent";
 import GameOver from "../States/GameOver";
+import Wall from "./Wall";
 
 export default class Tank extends GameObject {
     agent:IAgent;
@@ -59,6 +60,49 @@ export default class Tank extends GameObject {
                     this.health = 0;
                 }                
             }
+        } else if(other instanceof Wall){ // handle Tank collection
+            if(isoverLap){
+                // move tank out of wall
+                let wcx = other.x + (other.w / 2);
+                let wcy = other.y + (other.h / 2);
+
+                let leftside = 
+                    (this.x + this.w >= other.x ) && // check tank inside left side of wall
+                    (this.x + this.w <= wcx     ) && // check if tank is inside left center of wall
+                    (this.y + 2 >= other.y - this.h) && // limit movement to y axis
+                    (this.y - 2 <= other.y + other.h); // limit movement to y axis
+                let rightside = 
+                    (this.x <= other.x + other.w) && // check tank inside right side of wall
+                    (this.x >= wcx              ) && // check if tank is inside right center of wall
+                    (this.y + 2 >= other.y - this.h) && // limit movement to y axis
+                    (this.y - 2 <= other.y + other.h); // limit movement to y axis                    
+                let topside = 
+                    (this.y <= other.y + other.h) && // check tank inside top side of wall
+                    (this.y <= wcy              ) && // check if tank is inside top center of wall
+                    (this.x + 2 >= other.x - this.w) && // limit movement to x axis
+                    (this.x - 2 <= other.x + other.w); // limit movement to x axis                                     
+                let bottomside =   
+                    (this.y <= other.y + other.h) && // check tank inside top side of wall
+                    (this.y >= wcy              ) && // check if tank is inside top center of wall
+                    (this.x + 2 >= other.x - this.w) && // limit movement to x axis
+                    (this.x - 2 <= other.x + other.w); // limit movement to x axis
+                if(leftside){
+                    this.x = this.agent.x = other.x - this.w;
+                } else if(rightside){
+                    this.x = this.agent.x = other.x + other.w;
+                } else if(topside){
+                    this.y = this.agent.y = other.y - this.h;
+                } else if(bottomside){
+                    this.y = this.agent.y = other.y + other.h;
+                }
+            }                             
         }
+    }
+    public getDirectionNormal() : {x:number, y:number} {
+        if(this.agent.d == 0) return {x: 0, y:-1};
+        else if(this.agent.d == 1) return {x:-1, y: 0};
+        else if(this.agent.d == 2) return {x: 0, y: 1};
+        else if(this.agent.d == 3) return {x: 1, y: 0};
+        else return {x: 0, y: 0};
     }
 }

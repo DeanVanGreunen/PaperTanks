@@ -5,6 +5,7 @@ import ITankRender from "../Tanks/ITankRender";
 import StateMachine from "../StateMachine";
 import Tank from "./Tank";
 import Bullet from "./Bullet";
+import MathF from "../MathF";
 
 export default class Wall extends GameObject {
     x:number;
@@ -47,17 +48,13 @@ export default class Wall extends GameObject {
             (this.x + this.w > other.x ) &&
             (this.y < other.y + other.h) &&
             (this.y + this.h > other.y);
-            if(other instanceof Tank){ // handle Tank collection
-                if(isoverLap){
-                    // move tank out of wall
-                }
-            } else if(other instanceof Bullet){ // handle Tank collection
-                if(isoverLap){
-                    // bounce bullets against the wall
-                    other.vx *= -1;
-                    other.vy *= -1;
-                }
+        if(other instanceof Bullet){ // handle Tank collection
+            if(isoverLap){
+                // bounce bullets against the wall
+                other.vx *= -1;
+                other.vy *= -1;
             }
+        }
     }
     
 }

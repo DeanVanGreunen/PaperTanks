@@ -27,4 +27,21 @@ export default class MathF {
         let r = Math.sqrt(e);
         return r;
     }
+
+    public static dotProduct(x1:number, y1:number, x2:number, y2:number) : number{
+        return (x1 * x2) + (y1 * y2);
+    }
+
+    public static scaleVector(v1: {x:number, y:number}, v2:number): {x:number, y:number}{
+        return {
+            x: v1.x * v2,
+            y: v1.y * v2,
+        }
+    }
+    public static subVector(x1:number, y1:number, v2: {x:number, y:number}):{x:number, y:number}{
+        return {
+            x: x1 - v2.x,
+            y: y1 - v2.y
+        }
+    }
 }
