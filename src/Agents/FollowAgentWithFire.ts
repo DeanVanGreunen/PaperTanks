@@ -7,7 +7,7 @@ import PlayerAgent from './PlayerAgent';
 import MathF from '../MathF';
 
 export default class FollowAgentWithFire extends IAgent {
-    canFire:number = 0;
+    canFire:number = 10; // default so it doesnt fire as soon as it spawns
     public update(delta:number, tank:Tank){
         let player = (Game.getPlayer() as Tank).agent;
         // move tank
