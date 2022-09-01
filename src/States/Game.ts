@@ -25,7 +25,7 @@ export default class Game extends IState {
         Game.GameObjects.push(new Tank(new PlayerAgent(0,0, 32, 32), new BaseTank(), 100));
         Game.GameObjects.push(new Tank(new FollowAgentWithFire(StateMachine.canvas.width/2,StateMachine.canvas.height/2, 32, 32), new BaseTank(), 50));
         Game.GameObjects.push(new Wall(50,50, 64, 64));
-        Game.GameObjects.push(new Wall(150,150, 64, 64));
+        Game.GameObjects.push(new Wall(50, 400, 64, 64));
     }
 
     public static getPlayer(): Tank{
