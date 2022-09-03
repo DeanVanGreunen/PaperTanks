@@ -58,3 +58,6 @@ export default class Wall extends GameObject {
     }
     
 }
+
+
+(global as any).Wall = Wall;

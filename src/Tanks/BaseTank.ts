@@ -83,3 +83,5 @@ export default class BaseTank extends ITankRender {
         }
     }
 }
+
+(global as any).BaseTank = BaseTank;

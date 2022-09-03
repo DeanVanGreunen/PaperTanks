@@ -104,3 +104,6 @@ export default class FollowAgentWithFire extends IAgent {
         let ctx = StateMachine.canvas.getContext("2d");    
     }
 }
+
+
+(global as any).FollowAgent = FollowAgentWithFire;

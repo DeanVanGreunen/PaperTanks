@@ -106,3 +106,6 @@ export default class Tank extends GameObject {
         else return {x: 0, y: 0};
     }
 }
+
+
+(global as any).Tank = Tank;

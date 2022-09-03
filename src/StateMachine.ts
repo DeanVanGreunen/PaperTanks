@@ -1,5 +1,9 @@
 import IState from "./IState";
+import Level from "./Level";
 import Splash from "./States/Splash";
+
+// levels
+import level_1 from "./levels/level_1.json";
 
 export default class StateMachine {
     previousTime = 0.0;
@@ -27,6 +31,8 @@ export default class StateMachine {
     }
 
     async init(){
+        // load levels
+        Level.levels.set("level_1", level_1);
         // bind to mouse   
         document.addEventListener('mousemove', (e)=>{
             let rect = StateMachine.canvas.getBoundingClientRect();

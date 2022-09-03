@@ -10,3 +10,6 @@ export default class ITankRender {
         //StateMachine.canvas = canvas;
     }
 }
+
+
+(global as any).ITankRender = ITankRender;

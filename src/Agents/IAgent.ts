@@ -25,3 +25,6 @@ export default class IAgent {
 
     }
 }
+
+
+(global as any).IAgent = IAgent;

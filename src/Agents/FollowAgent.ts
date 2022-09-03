@@ -68,3 +68,6 @@ export default class FollowAgent extends IAgent {
         let ctx = StateMachine.canvas.getContext("2d");    
     }
 }
+
+
+(global as any).FollowAgent = FollowAgent;

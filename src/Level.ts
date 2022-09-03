@@ -1,28 +1,52 @@
 import GameObject from "./GameObjects";
-import { readFileSync, promises as fsPromises } from 'fs';
-import { join } from 'path';
 import Wall from "./GameObjects/Wall";
+import Tank from "./GameObjects/Tank";
+import Bullet from "./GameObjects/Bullet";
+import BaseTank from "./Tanks/BaseTank";
+import FollowAgent from "./Agents/FollowAgent";
+import FollowAgentWithFire from "./Agents/FollowAgentWithFire";
+import PlayerAgent from "./Agents/PlayerAgent";
+import DumbAgent from "./Agents/DumbAgent";
 
 export default class Level {
-    public static async load(level_name:string) {
-        let filename = `/assets/levels/${level_name}.json`;
-        let json_string = await fetch(filename).then((r)=>{
-            r.json();
-        }).then((r)=>{
-            return r as unknown as string;
-        });
-        
-        const json = JSON.parse(json_string);
+    public static levels = new Map<string, any>();
+    public static getLevel(level_name:string){
+        const json = Level.levels.get(level_name);
+        console.log(json);
         let gos:GameObject[] = [];
-        for(let item of json){
+        // get objects
+        let objs = json['objects']
+        for(let item of objs){
             // objects
-            switch(item['type']){
-                case 'Wall':
-                    gos.push(new Wall(item['x'], item['y'], item['w'], item['h']));
-                    break;
+            if(item['type'] == 'Wall'){
+                    gos.push(new Wall(item['x'], item['y'], item['w'], item['h']));                    
+            } else if(item['type'] == 'Tank'){
+                    let agent;
+                    if(item['agent'] == "PlayerAgent"){
+                        agent = new PlayerAgent(item['agent_x'],item['agent_y'],item['agent_w'],item['agent_h']);
+                    } else if(item['agent'] == "DumbAgent"){
+                        agent = new DumbAgent(item['agent_x'],item['agent_y'],item['agent_w'],item['agent_h']);
+                    } else if(item['agent'] == "FollowAgent"){
+                        agent = new FollowAgent(item['agent_x'],item['agent_y'],item['agent_w'],item['agent_h']);
+                    } else if(item['agent'] == "FollowAgentWithFire"){
+                        agent = new FollowAgentWithFire(item['agent_x'],item['agent_y'],item['agent_w'],item['agent_h']);
+                    } else {
+                        agent = new DumbAgent(item['agent_x'],item['agent_y'],item['agent_w'],item['agent_h']);                        
+                    }
+                    let health = item['health'];
+                    let renderer;
+                    if(item['renderer'] == "BaseTank"){
+                            renderer = new BaseTank();
+                    } else {
+                        renderer = new BaseTank();
+                    }
+                    let tank = new Tank(agent, renderer, health);
+                    gos.push(tank)                       
+            } else if(item['type'] == 'Bullet'){
+                let bullet = new Bullet(item['x'],item['y'],item['r'],item['vx'],item['vy']);
+                gos.push(bullet)   
             }
         }
-
         return gos;
     }
 }

@@ -130,3 +130,6 @@ export default class PlayerAgent extends IAgent {
         }
     }
 }
+
+
+(global as any).PlayerAgent = PlayerAgent;

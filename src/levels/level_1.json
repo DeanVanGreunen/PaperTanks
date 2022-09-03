@@ -34,6 +34,14 @@
             "agent_h": 32,
             "renderer": "BaseTank",
             "health": 50
+        },
+        {
+            "type":"Bullet",
+            "x": 50,
+            "y": 120,
+            "r": 6,
+            "vx": 0,
+            "vy": 1
         }
     ]
 }

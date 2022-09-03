@@ -49,3 +49,5 @@ export default class Bullet extends GameObject {
 
     
 }
+
+(global as any).Bullet = Bullet;

@@ -10,12 +10,13 @@
      "noUnusedLocals": false,
      "noUnusedParameters": false,
      "target": "es5",
+     "resolveJsonModule": true,
      "typeRoots": [
      "node_modules/@types",
      "typings"
     ]
   },
      "include": [
-     "src/**/*.ts"
+      "src/**/*.ts"
    ]
  }
