@@ -1,0 +1,39 @@
+{
+    "name": "Level 1",
+    "objects": [
+        {
+            "type":"Wall",
+            "x": 50,
+            "y": 50,
+            "w": 64,
+            "h": 64
+        },
+        {
+            "type":"Wall",
+            "x": 50,
+            "y": 400,
+            "w": 64,
+            "h": 64
+        },
+        {
+            "type":"Tank",
+            "agent": "PlayerAgent",
+            "agent_x": 0,
+            "agent_y": 0,
+            "agent_w": 32,
+            "agent_h": 32,
+            "renderer": "BaseTank",
+            "health": 100
+        },
+        {
+            "type":"Tank",
+            "agent": "FollowAgentWithFire",
+            "agent_x": 310,
+            "agent_y": 240,
+            "agent_w": 32,
+            "agent_h": 32,
+            "renderer": "BaseTank",
+            "health": 50
+        }
+    ]
+}
