@@ -2,6 +2,7 @@ import Button from "../Button";
 import IState from "../IState";
 import StateMachine from "../StateMachine";
 import Game from "./Game";
+import LevelSelect from "./LevelSelect";
 import ThankYou from "./ThankYou";
 
 export default class MainMenu extends IState {
@@ -12,6 +13,7 @@ export default class MainMenu extends IState {
     switch:boolean = false; 
     showMenu:boolean = false;
     startButton:Button;
+    levelSelectButton:Button;
     quitButton:Button;
     constructor(){
         super();
@@ -44,6 +46,28 @@ export default class MainMenu extends IState {
         this.startButton.x = (StateMachine.canvas.width / 2) - (this.startButton.w / 2);
         this.startButton.y = (StateMachine.canvas.height / 2) - (this.startButton.h / 2);
         
+        this.levelSelectButton = new Button();
+        this.levelSelectButton.text = "Level Select";
+        this.levelSelectButton.color = "#363636";
+        this.levelSelectButton.hover_color = "#cc0707";
+        this.levelSelectButton.background = "rgb(0,0,0,0)"; // transparent
+        this.levelSelectButton.hover_background = "rgb(0,0,0,0)"; // transparent
+        this.levelSelectButton.border = "#363636";
+        this.levelSelectButton.hover_border = "#cc0707";
+        this.levelSelectButton.font = "PencilRegular";
+        this.levelSelectButton.size = "32px";
+        this.levelSelectButton.w = 150;
+        this.levelSelectButton.h = 48;
+        this.levelSelectButton.onclick = async () => {  
+            // POP last state, and show thankyou for playing message          
+            StateMachine.states.pop();
+            let state = new LevelSelect();
+            await state.init();
+            StateMachine.states.push(state);
+        };
+        this.levelSelectButton.x = (StateMachine.canvas.width / 2) - (this.levelSelectButton.w / 2);
+        this.levelSelectButton.y = (StateMachine.canvas.height / 2) - (this.levelSelectButton.h / 2) + this.levelSelectButton.h + 8;
+        
         this.quitButton = new Button();
         this.quitButton.text = "Quit Game";
         this.quitButton.color = "#363636";
@@ -64,7 +88,7 @@ export default class MainMenu extends IState {
             StateMachine.states.push(state);
         };
         this.quitButton.x = (StateMachine.canvas.width / 2) - (this.quitButton.w / 2);
-        this.quitButton.y = (StateMachine.canvas.height / 2) - (this.quitButton.h / 2) + this.startButton.h + 8;
+        this.quitButton.y = (StateMachine.canvas.height / 2) - (this.quitButton.h / 2) + this.levelSelectButton.h + 8 + this.levelSelectButton.h + 8;
 
 
         // load assessts
@@ -102,6 +126,7 @@ export default class MainMenu extends IState {
             }    
 
             this.startButton.update(delta);
+            this.levelSelectButton.update(delta);
             this.quitButton.update(delta);
         }
     }
@@ -134,6 +159,7 @@ export default class MainMenu extends IState {
         
         if(this.showMenu){ // if enabled show menu buttons           
             this.startButton.render();
+            this.levelSelectButton.render();
             this.quitButton.render();
         }
 
