@@ -69,6 +69,11 @@ export default class Wall extends GameObject {
                 // bounce bullets against the wall
                 other.vx *= -1;
                 other.vy *= -1;
+                const music = new Audio('assets/audio/bounce.wav');
+                music.loop = false;
+                music.volume = 0.10;
+                music.playbackRate = 1;
+                music.play();
             }
         }
     }

@@ -69,7 +69,12 @@ export default class EndLevel extends GameObject {
                 let enemiesLeft = Game.GameObjects.filter((go)=>{
                     return (go instanceof Tank) && !(go.agent instanceof PlayerAgent);
                 }).length;
-                if(enemiesLeft == 0){ // move to next level, else go to credits
+                if(enemiesLeft == 0){ // move to next level, else go to credits                    
+                    const music = new Audio('assets/audio/teleport.wav');
+                    music.loop = false;
+                    music.volume = 0.25;
+                    music.playbackRate = 0.9;
+                    music.play();
                     let next = Level.getNextLevel(Game.NextLevelFrom);
                     if(!Level.doesExist(next)){
                         StateMachine.states.pop();

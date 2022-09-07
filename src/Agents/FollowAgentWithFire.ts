@@ -97,6 +97,11 @@ export default class FollowAgentWithFire extends IAgent {
                 break;
             }
             Game.GameObjects.push(new Bullet(xx, yy, 4, vx, vy));
+            const music = new Audio('assets/audio/gun.mp3');
+            music.loop = false;
+            music.volume = 0.15;
+            music.playbackRate = 1;
+            music.play();
         }
         this.canFire -= 1 * delta;
     }

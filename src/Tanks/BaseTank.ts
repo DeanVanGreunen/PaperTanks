@@ -94,8 +94,7 @@ export default class BaseTank extends ITankRender {
             ctx.lineTo(x + 2, y + h - 6);
             ctx.stroke();
 
-            let wd = (w - 4) * (tank.agent.health / 100);            
-
+            let wd = (w - 4) * (tank.health / 100);            
             ctx.beginPath();
             ctx.fillStyle = '#cc0707';
             ctx.moveTo(x + 2, y + h - 6);

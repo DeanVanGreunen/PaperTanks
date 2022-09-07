@@ -60,6 +60,11 @@ export default class Tank extends GameObject {
                 this.mustDelete = true;
                 this.health = 0;
             }
+            const music = new Audio('assets/audio/explosion.mp3');
+            music.loop = false;
+            music.volume = 0.15;
+            music.playbackRate = 1;
+            music.play();
         } else if(other instanceof Wall){ // handle Tank collection
             // move tank out of wall
             let wcx = other.x + (other.w / 2);
