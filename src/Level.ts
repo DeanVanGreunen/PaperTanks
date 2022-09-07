@@ -8,6 +8,7 @@ import FollowAgentWithFire from "./Agents/FollowAgentWithFire";
 import PlayerAgent from "./Agents/PlayerAgent";
 import DumbAgent from "./Agents/DumbAgent";
 import EndLevel from "./GameObjects/EndLevel";
+import Heart from "./GameObjects/Heart";
 
 export default class Level {
     public static levels = new Map<string, any>();
@@ -53,6 +54,9 @@ export default class Level {
             } else if(item['type'] == 'EndLevel'){
                 let endlevel = new EndLevel(item['x'],item['y'],item['w'],item['h']);
                 gos.push(endlevel)   
+            } else if(item['type'] == 'Heart'){
+                let heart = new Heart(item['x'],item['y'],item['w'],item['h']);
+                gos.push(heart)   
             }
         }
         return gos;

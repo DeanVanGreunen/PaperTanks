@@ -34,7 +34,7 @@ export default class EndLevel extends GameObject {
         let ctx = StateMachine.canvas.getContext("2d");
         // box
         ctx.beginPath();
-        ctx.lineWidth = 0.75;
+        ctx.lineWidth = 2;
         ctx.strokeStyle = '#359225';
         ctx.moveTo(this.x, this.y);
         ctx.lineTo(this.x, this.y + this.h);
@@ -54,7 +54,7 @@ export default class EndLevel extends GameObject {
         ctx.lineWidth = 0.75;
         ctx.strokeStyle = '#359225';
         ctx.moveTo(this.x + this.w, this.y);
-        ctx.lineTo(this.x, this.y);
+        ctx.lineTo(this.x, this.y + this.h);
         ctx.stroke();
     }
     public async onCollision(other:GameObject){
@@ -69,7 +69,7 @@ export default class EndLevel extends GameObject {
                 let enemiesLeft = Game.GameObjects.filter((go)=>{
                     return (go instanceof Tank) && !(go.agent instanceof PlayerAgent);
                 }).length;
-                if(enemiesLeft == 0){
+                if(enemiesLeft == 0){ // move to next level, else go to credits
                     let next = Level.getNextLevel(Game.NextLevelFrom);
                     if(!Level.doesExist(next)){
                         StateMachine.states.pop();

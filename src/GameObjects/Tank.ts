@@ -7,6 +7,7 @@ import StateMachine from "../StateMachine";
 import PlayerAgent from "../Agents/PlayerAgent";
 import GameOver from "../States/GameOver";
 import Wall from "./Wall";
+import Heart from "./Heart";
 
 export default class Tank extends GameObject {
     agent:IAgent;
@@ -39,63 +40,66 @@ export default class Tank extends GameObject {
             (this.x < other.x + other.w) &&
             (this.x + this.w > other.x ) &&
             (this.y < other.y + other.h) &&
-            (this.y + this.h > other.y);
+            (this.y + this.h > other.y);  
+        if(!isoverLap) return;
         if(other instanceof Bullet){ // handle bullet collection
-            if(isoverLap){
-                other.mustDelete = true;
-                this.health -= other.damage;
-                if(this.agent instanceof PlayerAgent === false){
-                    Game.score += 10;
-                } else if(this.agent instanceof PlayerAgent){
-                    if(this.health <= 0){
-                        Game.GameObjects = []; // clear game
-                        StateMachine.states.pop()
-                        let state = new GameOver(); // show gameover menu
-                        state.init(); // init
-                        StateMachine.states.push(state) // add to stack
-                    }
-                }    
+            other.mustDelete = true;
+            this.health -= other.damage;
+            if(this.agent instanceof PlayerAgent === false){
+                Game.score += 10;
+            } else if(this.agent instanceof PlayerAgent){
                 if(this.health <= 0){
-                    this.mustDelete = true;
-                    this.health = 0;
-                }                
+                    Game.GameObjects = []; // clear game
+                    StateMachine.states.pop()
+                    let state = new GameOver(); // show gameover menu
+                    state.init(); // init
+                    StateMachine.states.push(state) // add to stack
+                }
+            }    
+            if(this.health <= 0){
+                this.mustDelete = true;
+                this.health = 0;
             }
         } else if(other instanceof Wall){ // handle Tank collection
-            if(isoverLap){
-                // move tank out of wall
-                let wcx = other.x + (other.w / 2);
-                let wcy = other.y + (other.h / 2);
+            // move tank out of wall
+            let wcx = other.x + (other.w / 2);
+            let wcy = other.y + (other.h / 2);
 
-                let leftside = 
-                    (this.x + this.w >= other.x ) && // check tank inside left side of wall
-                    (this.x + this.w <= wcx     ) && // check if tank is inside left center of wall
-                    (this.y + 2 >= other.y - this.h) && // limit movement to y axis
-                    (this.y - 2 <= other.y + other.h); // limit movement to y axis
-                let rightside = 
-                    (this.x <= other.x + other.w) && // check tank inside right side of wall
-                    (this.x >= wcx              ) && // check if tank is inside right center of wall
-                    (this.y + 2 >= other.y - this.h) && // limit movement to y axis
-                    (this.y - 2 <= other.y + other.h); // limit movement to y axis                    
-                let topside = 
-                    (this.y <= other.y + other.h) && // check tank inside top side of wall
-                    (this.y <= wcy              ) && // check if tank is inside top center of wall
-                    (this.x + 2 >= other.x - this.w) && // limit movement to x axis
-                    (this.x - 2 <= other.x + other.w); // limit movement to x axis                                     
-                let bottomside =   
-                    (this.y <= other.y + other.h) && // check tank inside top side of wall
-                    (this.y >= wcy              ) && // check if tank is inside top center of wall
-                    (this.x + 2 >= other.x - this.w) && // limit movement to x axis
-                    (this.x - 2 <= other.x + other.w); // limit movement to x axis
-                if(leftside){
-                    this.x = this.agent.x = other.x - this.w;
-                } else if(rightside){
-                    this.x = this.agent.x = other.x + other.w;
-                } else if(topside){
-                    this.y = this.agent.y = other.y - this.h;
-                } else if(bottomside){
-                    this.y = this.agent.y = other.y + other.h;
-                }
-            }                             
+            let leftside = 
+                (this.x + this.w >= other.x ) && // check tank inside left side of wall
+                (this.x + this.w <= wcx     ) && // check if tank is inside left center of wall
+                (this.y + 2 >= other.y - this.h) && // limit movement to y axis
+                (this.y - 2 <= other.y + other.h); // limit movement to y axis
+            let rightside = 
+                (this.x <= other.x + other.w) && // check tank inside right side of wall
+                (this.x >= wcx              ) && // check if tank is inside right center of wall
+                (this.y + 2 >= other.y - this.h) && // limit movement to y axis
+                (this.y - 2 <= other.y + other.h); // limit movement to y axis                    
+            let topside = 
+                (this.y <= other.y + other.h) && // check tank inside top side of wall
+                (this.y <= wcy              ) && // check if tank is inside top center of wall
+                (this.x + 2 >= other.x - this.w) && // limit movement to x axis
+                (this.x - 2 <= other.x + other.w); // limit movement to x axis                                     
+            let bottomside =   
+                (this.y <= other.y + other.h) && // check tank inside top side of wall
+                (this.y >= wcy              ) && // check if tank is inside top center of wall
+                (this.x + 2 >= other.x - this.w) && // limit movement to x axis
+                (this.x - 2 <= other.x + other.w); // limit movement to x axis
+            if(leftside){
+                this.x = this.agent.x = other.x - this.w;
+            } else if(rightside){
+                this.x = this.agent.x = other.x + other.w;
+            } else if(topside){
+                this.y = this.agent.y = other.y - this.h;
+            } else if(bottomside){
+                this.y = this.agent.y = other.y + other.h;
+            }                        
+        } else if(other instanceof Heart){
+            if(this.agent instanceof PlayerAgent){
+                this.agent.health = 100;
+                this.health = 100;
+                other.mustDelete = true;
+            }
         }
     }
     public getDirectionNormal() : {x:number, y:number} {

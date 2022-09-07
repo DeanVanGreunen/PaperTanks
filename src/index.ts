@@ -7,6 +7,12 @@ window.addEventListener("load", async () => {
     const myFont = new FontFace('PencilRegular', 'url(assets/fonts/Pencil-Regular.ttf)');
     await myFont.load();
     (document as any).fonts.add(myFont);
+    const myFont2 = new FontFace('QuicksandLight', 'url(assets/fonts/Quicksand-Light.ttf)');
+    await myFont2.load();
+    (document as any).fonts.add(myFont2);
+    const myFont3 = new FontFace('QuicksandMedium', 'url(assets/fonts/Quicksand-Medium.ttf)');
+    await myFont3.load();
+    (document as any).fonts.add(myFont3);
     
     // get canvas
     const canvas = document.querySelector("canvas");

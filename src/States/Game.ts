@@ -10,6 +10,7 @@ import FollowAgentWithFire from "../Agents/FollowAgentWithFire";
 import Level from "../Level";
 
 export default class Game extends IState {
+    static version:string = "1.0.0.0-beta";
     static GameObjects:GameObject[] = [];
     static NextLevelFrom:string = "";
     static score:number = 0;

@@ -32,14 +32,30 @@ export default class Wall extends GameObject {
 
     public render(game:Game){
         let ctx = StateMachine.canvas.getContext("2d");
+        // box
         ctx.beginPath();
-        ctx.fillStyle = '#363636';
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#363636';
         ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x + this.w, this.y);
-        ctx.lineTo(this.x + this.w, this.y + this.h);
         ctx.lineTo(this.x, this.y + this.h);
+        ctx.lineTo(this.x + this.w, this.y + this.h);
+        ctx.lineTo(this.x + this.w, this.y);
         ctx.lineTo(this.x, this.y);
-        ctx.fill();
+        ctx.stroke();
+        // line 1
+        ctx.beginPath();
+        ctx.lineWidth = 0.75;
+        ctx.strokeStyle = '#363636';
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x + this.w, this.y + this.h);
+        ctx.stroke();
+        // line 2
+        ctx.beginPath();
+        ctx.lineWidth = 0.75;
+        ctx.strokeStyle = '#363636';
+        ctx.moveTo(this.x + this.w, this.y);
+        ctx.lineTo(this.x, this.y + this.h);
+        ctx.stroke();
     }
 
     public onCollision(other:GameObject){

@@ -157,10 +157,26 @@ export default class MainMenu extends IState {
 
         ctx.drawImage(this.game_name_logo, 0, 0, this.game_name_logo.width, this.game_name_logo.height, this.game_name_logo_x, this.game_name_logo_y, this.game_name_logo.width, this.game_name_logo.height);        
         
-        if(this.showMenu){ // if enabled show menu buttons           
+        if(this.showMenu){ // if enabled show menu buttons  
+            // add name watermark                     
+            ctx.beginPath();
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.font = `normal 12pt PencilRegular`;
+            ctx.fillStyle = "#4c4c4c";
+            ctx.fillText("By Dean Van Greunen", (StateMachine.canvas.width / 2), 64); 
+            // show version number                                 
+            ctx.beginPath();
+            ctx.textAlign = "left";
+            ctx.textBaseline = "middle";
+            ctx.font = `normal 8pt QuicksandMedium`;
+            ctx.fillStyle = "#4c4c4c";
+            ctx.fillText(`Version: ${Game.version}`, 4, StateMachine.canvas.height - 8); 
+            // render buttons
             this.startButton.render();
             this.levelSelectButton.render();
             this.quitButton.render();
+
         }
 
         // used for fading
