@@ -17,6 +17,7 @@ export default class LevelSelect extends IState {
         this.init = this.init.bind(this);
         this.update = this.update.bind(this);
         this.render = this.render.bind(this);
+        Game.score = 0;
     }
 
     public init(){
@@ -38,6 +39,7 @@ export default class LevelSelect extends IState {
             button.h = 48;
             button.onclick = async () => { 
                 Game.GameObjects = Level.getLevel(level);
+                Game.NextLevelFrom = level;
                 StateMachine.states.pop();
                 let state = new Game();
                 await state.init();

@@ -11,6 +11,7 @@ import Level from "../Level";
 
 export default class Game extends IState {
     static GameObjects:GameObject[] = [];
+    static NextLevelFrom:string = "";
     static score:number = 0;
     constructor(){
         super();
@@ -27,7 +28,6 @@ export default class Game extends IState {
     }
 
     public async init(){
-        Game.score = 0;
         for(let i=0;i<Game.GameObjects.length;i++){
             Game.GameObjects[i].init();
         }

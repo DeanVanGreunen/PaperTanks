@@ -1,6 +1,6 @@
 {
-    "name": "level_1",
-    "next_level": "level_2",
+    "name": "level_2",
+    "next_level": "level_3",
     "objects": [
         {
             "type":"EndLevel",
@@ -8,20 +8,6 @@
             "y": 200,
             "w": 40,
             "h": 20
-        },
-        {
-            "type":"Wall",
-            "x": 50,
-            "y": 50,
-            "w": 64,
-            "h": 64
-        },
-        {
-            "type":"Wall",
-            "x": 50,
-            "y": 400,
-            "w": 64,
-            "h": 64
         },
         {
             "type":"Tank",
