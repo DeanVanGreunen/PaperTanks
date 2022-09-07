@@ -37,7 +37,12 @@ export default class MainMenu extends IState {
         this.startButton.size = "32px";
         this.startButton.w = 150;
         this.startButton.h = 48;
-        this.startButton.onclick = async () => { 
+        this.startButton.onclick = async () => {               
+            const music = new Audio('assets/audio/teleport.wav');
+            music.loop = false;
+            music.volume = 0.25;
+            music.playbackRate = 1;
+            music.play();
             StateMachine.states.pop();
             let state = new Game();
             await state.init();
@@ -58,7 +63,12 @@ export default class MainMenu extends IState {
         this.levelSelectButton.size = "32px";
         this.levelSelectButton.w = 150;
         this.levelSelectButton.h = 48;
-        this.levelSelectButton.onclick = async () => {  
+        this.levelSelectButton.onclick = async () => {               
+            const music = new Audio('assets/audio/teleport.wav');
+            music.loop = false;
+            music.volume = 0.25;
+            music.playbackRate = 1;
+            music.play(); 
             // POP last state, and show thankyou for playing message          
             StateMachine.states.pop();
             let state = new LevelSelect();
@@ -80,7 +90,12 @@ export default class MainMenu extends IState {
         this.quitButton.size = "32px";
         this.quitButton.w = 150;
         this.quitButton.h = 48;
-        this.quitButton.onclick = async () => {  
+        this.quitButton.onclick = async () => {                
+            const music = new Audio('assets/audio/teleport.wav');
+            music.loop = false;
+            music.volume = 0.25;
+            music.playbackRate = 1;
+            music.play();
             // POP last state, and show thankyou for playing message          
             StateMachine.states.pop();
             let state = new ThankYou();

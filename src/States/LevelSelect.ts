@@ -37,7 +37,12 @@ export default class LevelSelect extends IState {
             button.size = "32px";
             button.w = 150;
             button.h = 48;
-            button.onclick = async () => { 
+            button.onclick = async () => {               
+                const music = new Audio('assets/audio/teleport.wav');
+                music.loop = false;
+                music.volume = 0.25;
+                music.playbackRate = 1;
+                music.play();
                 Game.GameObjects = Level.getLevel(level);
                 Game.NextLevelFrom = level;
                 StateMachine.states.pop();
