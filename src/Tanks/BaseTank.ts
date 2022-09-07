@@ -86,13 +86,24 @@ export default class BaseTank extends ITankRender {
         if(tank.agent instanceof PlayerAgent === false){                  
             ctx.beginPath();
             ctx.lineWidth = 0.75;
-            ctx.strokeStyle = '#58aff3';
-            ctx.moveTo(x + 2, y + h - 4);
-            ctx.lineTo(x + w - 2, y + h - 4);
+            ctx.strokeStyle = '#cc0707';
+            ctx.moveTo(x + 2, y + h - 6);
+            ctx.lineTo(x + w - 2, y + h - 6);
             ctx.lineTo(x + w - 2, y + h - 2);
             ctx.lineTo(x + 2, y + h - 2);
-            ctx.lineTo(x + 2, y + h - 4);
+            ctx.lineTo(x + 2, y + h - 6);
             ctx.stroke();
+
+            let wd = (w - 4) * (tank.agent.health / 100);            
+
+            ctx.beginPath();
+            ctx.fillStyle = '#cc0707';
+            ctx.moveTo(x + 2, y + h - 6);
+            ctx.lineTo(x + 2 + wd, y + h - 6);
+            ctx.lineTo(x + 2 + wd, y + h - 2);
+            ctx.lineTo(x + 2, y + h - 2);
+            ctx.lineTo(x + 2, y + h - 6);
+            ctx.fill();
         }
     }
 }
