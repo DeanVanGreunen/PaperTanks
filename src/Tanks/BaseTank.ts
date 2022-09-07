@@ -1,3 +1,4 @@
+import PlayerAgent from '../Agents/PlayerAgent';
 import Tank from '../GameObjects/Tank';
 import StateMachine from '../StateMachine';
 import ITankRender from './ITankRender';
@@ -80,6 +81,18 @@ export default class BaseTank extends ITankRender {
                 ctx.lineTo(cx, cy - 2);
                 ctx.stroke();
                 break;
+        }
+
+        if(tank.agent instanceof PlayerAgent === false){                  
+            ctx.beginPath();
+            ctx.lineWidth = 0.75;
+            ctx.strokeStyle = '#58aff3';
+            ctx.moveTo(x + 2, y + h - 4);
+            ctx.lineTo(x + w - 2, y + h - 4);
+            ctx.lineTo(x + w - 2, y + h - 2);
+            ctx.lineTo(x + 2, y + h - 2);
+            ctx.lineTo(x + 2, y + h - 4);
+            ctx.stroke();
         }
     }
 }
