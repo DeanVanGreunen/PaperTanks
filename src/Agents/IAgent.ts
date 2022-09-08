@@ -19,7 +19,6 @@ export default class IAgent {
     }
 
     public update(delta:number, tank:Tank){
-
     }
     public render(tank:Tank){
 

@@ -1,5 +1,6 @@
 import Button from "../Button";
 import IState from "../IState";
+import Level from "../Level";
 import StateMachine from "../StateMachine";
 import Game from "./Game";
 import LevelSelect from "./LevelSelect";
@@ -43,6 +44,8 @@ export default class MainMenu extends IState {
             music.volume = 0.25;
             music.playbackRate = 1;
             music.play();
+            Game.GameObjects = Level.getLevel("level_1");
+            Game.NextLevelFrom = "level_1";
             StateMachine.states.pop();
             let state = new Game();
             await state.init();

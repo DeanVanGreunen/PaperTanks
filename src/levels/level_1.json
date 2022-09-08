@@ -4,52 +4,20 @@
     "objects": [
         {
             "type":"EndLevel",
-            "x": 200,
-            "y": 200,
-            "w": 40,
-            "h": 20
-        },
-        {
-            "type":"Wall",
-            "x": 50,
-            "y": 50,
-            "w": 64,
-            "h": 64
-        },
-        {
-            "type":"Wall",
-            "x": 50,
-            "y": 400,
-            "w": 64,
-            "h": 64
+            "x": 565,
+            "y": 144,
+            "w": 27,
+            "h": 120
         },
         {
             "type":"Tank",
             "agent": "PlayerAgent",
-            "agent_x": 0,
-            "agent_y": 0,
+            "agent_x": 25,
+            "agent_y": 220,
             "agent_w": 32,
             "agent_h": 32,
             "renderer": "BaseTank",
             "health": 100
-        },
-        {
-            "type":"Tank",
-            "agent": "FollowAgentWithFire",
-            "agent_x": 310,
-            "agent_y": 240,
-            "agent_w": 32,
-            "agent_h": 32,
-            "renderer": "BaseTank",
-            "health": 50
-        },
-        {
-            "type":"Bullet",
-            "x": 50,
-            "y": 120,
-            "r": 6,
-            "vx": 0,
-            "vy": 1
         }
     ]
 }

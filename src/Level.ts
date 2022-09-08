@@ -22,7 +22,7 @@ export default class Level {
     public static getLevel(level_name:string){
         const json = Level.levels.get(level_name);
         let gos:GameObject[] = [];
-        let objs = json['objects']
+        let objs = json['objects'];
         for(let item of objs){
             if(item['type'] == 'Wall'){
                 gos.push(new Wall(item['x'], item['y'], item['w'], item['h']));                    

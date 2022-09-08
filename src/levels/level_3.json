@@ -1,0 +1,47 @@
+{
+    "name": "level_3",
+    "next_level": "level_4",
+    "objects": [
+        {
+            "type":"EndLevel",
+            "x": 557,
+            "y": 199,
+            "w": 48,
+            "h": 121
+        },
+        {
+            "type":"Tank",
+            "agent": "PlayerAgent",
+            "agent_x": 25,
+            "agent_y": 220,
+            "agent_w": 32,
+            "agent_h": 32,
+            "renderer": "BaseTank",
+            "health": 100
+        },
+        {
+            "type":"Tank",
+            "agent": "FollowAgent",
+            "agent_x": 295,
+            "agent_y": 244,
+            "agent_w": 32,
+            "agent_h": 32,
+            "renderer": "BaseTank",
+            "health": 50
+        },
+        {
+            "type":"Wall",
+            "x": 279,
+            "y": 0,
+            "w": 81,
+            "h": 227 
+        },
+        {
+            "type":"Wall",
+            "x": 269,
+            "y": 291,
+            "w": 81,
+            "h": 189
+        }
+    ]
+}

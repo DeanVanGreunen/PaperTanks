@@ -59,7 +59,7 @@ export default class Tank extends GameObject {
             if(this.health <= 0){
                 this.mustDelete = true;
                 this.health = 0;
-            }
+            } 
             const music = new Audio('assets/audio/explosion.mp3');
             music.loop = false;
             music.volume = 0.15;
@@ -101,7 +101,7 @@ export default class Tank extends GameObject {
             }                        
         } else if(other instanceof Heart){
             if(this.agent instanceof PlayerAgent){
-                this.agent.health = 100;
+                this.health = 100;
                 this.health = 100;
                 other.mustDelete = true;
             }

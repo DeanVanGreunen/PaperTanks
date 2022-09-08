@@ -5,6 +5,7 @@ import Splash from "./States/Splash";
 // levels
 import level_1 from "./levels/level_1.json";
 import level_2 from "./levels/level_2.json";
+import level_3 from "./levels/level_3.json";
 
 export default class StateMachine {
     previousTime = 0.0;
@@ -35,6 +36,7 @@ export default class StateMachine {
         // load levels
         Level.levels.set("level_1", level_1);
         Level.levels.set("level_2", level_2);
+        Level.levels.set("level_3", level_3);
         // bind to mouse   
         document.addEventListener('mousemove', (e)=>{
             let rect = StateMachine.canvas.getBoundingClientRect();
