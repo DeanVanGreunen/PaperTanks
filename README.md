@@ -6,6 +6,11 @@ This is a passion project, which I will be working on from time to time.
 
 You may make derivitive works however you may not sell these derivied works or this repo itself.
 
+# License
+
+NOT FOR: SALE, RESALE, REUSE (DERIVATIVES), AND/OR DISTRABUTION.
+FOR EDUCATIONAL PURPOSES ONLY.
+THIS IS BEEN ACTIVILY DEVELOPED AS A FULL GAME. THIS IS PURELY A DEMO OF MY GAME IDEA.
 
 # Tech Used
 
